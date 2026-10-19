@@ -8,7 +8,7 @@ let
 in
 {
 
-imports = [../users/generic.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
+imports = [../users/default.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
 
 

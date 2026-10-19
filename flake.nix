@@ -16,8 +16,8 @@
       default = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
-          ./hosts/generic.nix
-          { networking.hostName = "generic"; }
+          ./hosts/default.nix
+          { networking.hostName = "default"; }
           home-manager.nixosModules.home-manager
         ];
       };
