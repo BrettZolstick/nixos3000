@@ -8,7 +8,7 @@
       default = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
-          ./hosts/defaultHost.nix
+          ./hosts/default.nix
           { networking.hostName = "default"; }
         ];
       };
