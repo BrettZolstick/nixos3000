@@ -22,7 +22,7 @@ in
       imports = userPackagesNixFiles; # import all .nix files under ./userPackages
       home = {
         username = userName;
-        homeDirectory = /home/${userName};
+        homeDirectory = "/home/${userName}";
         stateVersion = "26.05";
       };
     };
