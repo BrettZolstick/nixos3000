@@ -6,7 +6,7 @@
   
   config = lib.mkIf config.allow-unfree.enable {
 
-    nixpkgs.allowUnfree = true;
+    nixpkgs.config.allowUnfree = true;
           
   };
 }
