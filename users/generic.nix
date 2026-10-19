@@ -1,6 +1,6 @@
 {lib, ...}:
 let
-  userName = "default";
+  userName = "generic";
 
   isNixFile        = file: lib.strings.hasSuffix ".nix" file;           # function that returns true if the argument has suffix of ".nix"
   allFiles         = lib.filesystem.listFilesRecursive ./userPackages;  # list of all files under ./userPackages
