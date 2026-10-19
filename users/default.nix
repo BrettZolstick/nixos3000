@@ -16,7 +16,7 @@ in
       home = {
         username = userName;
         homeDirectory = /home/${userName};
-        home.stateVersion = "26.05";
+        stateVersion = "26.05";
       };
     };
   };
