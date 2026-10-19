@@ -4,8 +4,8 @@
   };
 
   outputs = {nixpkgs, ...}: {
-    nixosConfigurations = nixpkgs.lib.nixosSystem {
-      default = {
+    nixosConfigurations = {
+      default = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
           ./hosts/defaultHost.nix
