@@ -11,15 +11,20 @@
     };
   };
 
-  outputs = {nixpkgs, home-manager, ...}: {
+  outputs = {nixpkgs, home-manager, ...}:
+    let
+      additionalModules = [
+        home-manager.nixosModules.home-manager
+      ];
+    in
+    {
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
           ./hosts/default.nix
           { networking.hostName = "default"; }
-          home-manager.nixosModules.home-manager
-        ];
+        ] ++ additionalModules;
       };
       
     };
