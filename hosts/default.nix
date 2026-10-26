@@ -1,9 +1,9 @@
 {lib, ...}:
 let
 
-  isNixFile        = file: lib.strings.hasSuffix ".nix" file;            # function that returns true if the argument has suffix of ".nix"
-  allFiles         = lib.filesystem.listFilesRecursive ./systemOptions;  # list of all files under ../systemOptions
-  nixFilesToImport = lib.filter isNixFile allFiles;                      # filters the list of allFiles to where only isNixFile returs true
+  isNixFile        = file: lib.strings.hasSuffix ".nix" file;              # function that returns true if the argument has suffix of ".nix"
+  allFiles         = lib.filesystem.listFilesRecursive ../modules/system;  # list of all files under ../modules/system
+  nixFilesToImport = lib.filter isNixFile allFiles;                        # filters the list of allFiles to where only isNixFile returs true
   
 in
 {
