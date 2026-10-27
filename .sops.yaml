@@ -1,9 +1,13 @@
-# These registered identities can be referenced to give acces to the desired secrets as long as they have the corresponding private key  
+# In order to view/edit/add encrypted secrets, you will need a registered identity with access to that secret.
 keys:
   - &default age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
   - &old age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
 
 creation_rules:
+
+  # to add/encrypt a secret, make an entry pointing to the path of the yaml file you will make
+  # give the desired age identities the access they need
+  # then run "sops edit secrets/<file>.yaml"
   
   # test entry
   - path_regex: ^secrets/test\.yaml$

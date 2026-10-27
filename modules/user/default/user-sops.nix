@@ -21,8 +21,6 @@ in
       Unit = {
         Description = "Generate an age identity for sops if one doesn't exist already";
         ConditionPathExists = "!${config.sops.age.keyFile}";
-        Requires = ["age-keygen.service"];
-        After = ["age-keygen.service"];
         Before = ["sops-nix.service"];
       };
       Service = {
