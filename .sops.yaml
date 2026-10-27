@@ -1,0 +1,14 @@
+# These registered identities can be referenced to give acces to the desired secrets as long as they have the corresponding private key  
+keys:
+  - &default age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
+  - &old age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
+
+creation_rules:
+  
+  # test entry
+  - path_regex: ^secrets/test\.yaml$
+    age:
+      - *default
+      - *old 
+  
+  
