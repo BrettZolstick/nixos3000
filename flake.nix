@@ -34,8 +34,8 @@
       default = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
-          ./hosts/guest.nix
-          { networking.hostName = "guest"; }
+          ./hosts/generic.nix
+          { networking.hostName = "generic"; }
         ] ++ additionalModules;
       };
       
