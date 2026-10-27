@@ -5,7 +5,7 @@
   config = lib.mkIf config.user-sops.enable {
 
     sops.age = {
-      keyfile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       generateKey = true;
     };
     
