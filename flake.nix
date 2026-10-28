@@ -31,7 +31,7 @@
     in
     {
     nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem{
+      generic = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
           ./hosts/generic.nix
