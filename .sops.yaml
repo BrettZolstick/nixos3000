@@ -13,7 +13,7 @@
 # Afterwards you will need to update all encrypted secrets to accept the new identity
 #
 #   nix-shell -p sops
-#   sops updatekeys secrets/*
+#   sops updatekeys secrets/*.yaml
 keys:
   - &host-generic age1rc4r0vl632yw2ecq923554cw980emmwtpsjr8ltyuf089znyqg2q6um3jv
   - &user-guest age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0

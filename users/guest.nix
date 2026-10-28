@@ -17,7 +17,7 @@ in
     #
     # Then add it to sops in this configs secrets/user-passwords/<username>.yaml
     #   sops edit secrets/user-passwords/<username>.yaml
-    sopsFile = ../secrets/user-passwords/${userName}.yaml;
+    sopsFile = ../secrets/user-password-${userName}.yaml;
     key = "hashed-password";
     neededForUsers = true;
   };
