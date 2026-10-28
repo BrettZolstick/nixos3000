@@ -1,4 +1,4 @@
-{lib, config, ...}:
+{lib, ...}:
 let
 
   isNixFile        = file: lib.strings.hasSuffix ".nix" file;              # function that returns true if the argument has suffix of ".nix"

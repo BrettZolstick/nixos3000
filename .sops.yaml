@@ -1,7 +1,18 @@
 # In order to view/edit/add encrypted secrets, you will need a registered identity with access to that secret.
+#
+# Identities will be automatically generated at the following locations:
+#   System-Level: /var/lib/sops-nix/keys.txt
+#   User-Level: ~/.config/sops/keys.txt
+#
+# Get the public key with this command:
+#   nix-shell -p age
+#   age-keygen -y <path to keys.txt>
+# 
+# Then, manually add that public key here
 keys:
-  - &guest age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
-  - &old age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
+  - &host-generic age1rc4r0u1632ywZecg923554cw980emmutpsjr81tyuf089znyqg2q6um3ju
+  - &user-guest age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
+  - &admin age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
 
 creation_rules:
 
@@ -12,10 +23,10 @@ creation_rules:
   # test entry
   - path_regex: ^secrets/test\.yaml$
     age:
-      - *guest
-      - *old 
+      - *admin
+      - *user-guest
 
   - path_regex: ^secrets/user-passwords/guest\.yaml$
     age:
-      - *old
-  
+      - *admin
+      - *host-generic
