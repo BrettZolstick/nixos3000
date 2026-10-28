@@ -28,7 +28,7 @@ in
     description = userName;
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.bash;
-    hashedPasswordFile = config.sops.secrets.guest-password.path;
+    hashedPasswordFile = config.sops.secrets.guest-user-password.path;
   };
   
   home-manager = {
