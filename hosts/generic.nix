@@ -8,14 +8,6 @@ let
 in
 {
 
-sops.secrets.root-password-hash={
-  sopsFile = ../secrets/host-root-passwords/generic.yaml;
-  key = "root-password-hash";
-  neededForUsers = true;
-};
-users.users.root.hashedPasswordFile = config.sops.secrets.root-password-hash.path;
-users.mutableUsers = false;
-
 imports = [../users/guest.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
 

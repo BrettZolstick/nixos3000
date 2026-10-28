@@ -14,11 +14,6 @@ creation_rules:
     age:
       - *generic
       - *old 
-  
-  - path_regex: ^secrets/host-root-passwords/generic\.yaml$
-    age:
-      - *generic
-      - *old
 
   - path_regex: ^secrets/guest-user-password\.yaml$
     age:
