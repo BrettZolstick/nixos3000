@@ -4,13 +4,18 @@
 #   System-Level: /var/lib/sops-nix/keys.txt
 #   User-Level: ~/.config/sops/keys.txt
 #
-# Get the public key with this command:
-#   nix-shell -p age
-#   age-keygen -y <path to keys.txt>
+# Get the public key with this command, pipe into qrencode to make a qr code:
+#   nix-shell -p age qrencode
+#   age-keygen -y <path to keys.txt> | qrencode -t ANSIUTF8
 # 
 # Then, manually add that public key here
+#
+# Afterwards you will need to update all encrypted secrets to accept the new identity
+#
+#   nix-shell -p sops
+#   sops updatekeys secrets/*
 keys:
-  - &host-generic age1rc4r0u1632ywZecg923554cw980emmutpsjr81tyuf089znyqg2q6um3ju
+  - &host-generic age1rc4r0vl632yw2ecq923554cw980emmwtpsjr8ltyuf089znyqg2q6um3jv
   - &user-guest age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
   - &admin age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
 
@@ -26,7 +31,7 @@ creation_rules:
       - *admin
       - *user-guest
 
-  - path_regex: ^secrets/user-passwords/guest\.yaml$
+  - path_regex: ^secrets/user-password-guest\.yaml$
     age:
       - *admin
       - *host-generic
