@@ -1,6 +1,6 @@
 # In order to view/edit/add encrypted secrets, you will need a registered identity with access to that secret.
 keys:
-  - &default age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
+  - &generic age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
   - &old age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
 
 creation_rules:
@@ -12,7 +12,15 @@ creation_rules:
   # test entry
   - path_regex: ^secrets/test\.yaml$
     age:
-      - *default
+      - *generic
       - *old 
   
+  - path_regex: ^secrets/host-root-passwords/generic\.yaml$
+    age:
+      - *generic
+      - *old
+
+  - path_regex: ^secrets/guest-user-password\.yaml$
+    age:
+      - *old
   
