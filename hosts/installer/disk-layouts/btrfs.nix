@@ -34,7 +34,7 @@
           content = {
             type = "btrfs";
             mountpoint = "/";
-            mountOptions = [ "compress=ztsd" ];
+            mountOptions = [ "compress=zstd" ];
           };
         };
         

@@ -38,7 +38,7 @@
     {
     nixosConfigurations = {
 
-      installer = {
+      installer = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -55,5 +55,7 @@
       };
       
     };
+
+    diskoConfigurations.btrfs = {disk,...}: import ./hosts/installer/disk-layouts/btrfs.nix {inherit disk;};
   };
 }
