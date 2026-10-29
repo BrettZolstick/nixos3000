@@ -103,7 +103,19 @@ function installNixOS {
 
     # Install NixOS
     Write-Host "Installing NixOS" -ForegroundColor Gray
-    nixos-install --flake "github:BrettZolstick/nixos3000#generic" --impure --no-root-password
+    nixos-install `
+        --flake "github:BrettZolstick/nixos3000#generic" `
+        --impure `
+        --no-root-password `
+        --option tarball-ttl 0 #   I was running into where the flake was building without pulling
+                               #   the new config from github after I pushed a commit with the
+                               #   newly generated age idenity. I would boot into nixos and would
+                               #   have no root or user passwords.
+                               #
+                               #   Setting the tarball-ttl 0 option tells nix to check github for
+                               #   an update to the flake instead of using the cached one if its
+                               #   been longer than 0 seconds. 
+
 
     Write-Host "Reboot to enter NixOS"
     
