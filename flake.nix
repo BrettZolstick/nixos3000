@@ -38,6 +38,7 @@
     {
     nixosConfigurations = {
 
+      # build the installer iso with "nix build '.#nixosConfigurations.installer.config.system.build.isoImage'"
       installer = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit disko; };

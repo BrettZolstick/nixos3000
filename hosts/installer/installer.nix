@@ -12,7 +12,7 @@ in
 
   services.getty.autologinUser = lib.mkForce "root";
 
-  programs.bash.loginShellInit = "${pkgs.runInstaller}/bin/install-nixos3000";
+  programs.bash.loginShellInit = "${runInstaller}/bin/install-nixos3000";
   
   environment.systemPackages = with pkgs; [
     age
