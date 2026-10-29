@@ -1,4 +1,4 @@
-{lib, ...}:
+{lib, config, ...}:
 let
 
   isNixFile        = file: lib.strings.hasSuffix ".nix" file;              # function that returns true if the argument has suffix of ".nix"
@@ -7,6 +7,13 @@ let
   
 in
 {
+sops.secrets.root-password = {
+  sopsFile = ../secrets/root-password-generic.yaml;
+  key = "hashed-password";
+  neededForUsers = true;
+};
+
+users.users.root.hashedPasswordFile = config.sops.secrets.root-password.path;
 
 imports = [../users/guest.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
