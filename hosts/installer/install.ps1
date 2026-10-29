@@ -103,7 +103,7 @@ function installNixOS {
 
     # Install NixOS
     Write-Host "Installing NixOS" -ForegroundColor Gray
-    nixos-install --flake "github:BrettZolstick/nixos3000#generic" --impure
+    nixos-install --flake "github:BrettZolstick/nixos3000#generic" --impure --no-root-password
 
     Write-Host "Reboot to enter NixOS"
     

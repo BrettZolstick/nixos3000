@@ -12,7 +12,9 @@ in
 
   services.getty.autologinUser = lib.mkForce "root";
 
-  programs.bash.loginShellInit = "${runInstaller}/bin/install-nixos3000";
+  programs.fish.enable = true;
+  users.users.root.shell = pkgs.fish;
+  programs.fish.loginShellInit = "${runInstaller}/bin/install-nixos3000";
   
   environment.systemPackages = with pkgs; [
     age
