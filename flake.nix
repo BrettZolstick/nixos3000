@@ -14,12 +14,18 @@
       url =  "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     sops-nix,
+    disko,
     ...
   }:
     let
@@ -31,6 +37,15 @@
     in
     {
     nixosConfigurations = {
+
+      installer = {
+        system = "x86_64-linux";
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./hosts/installer.nix
+        ];
+      };
+
       generic = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
