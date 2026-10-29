@@ -6,7 +6,7 @@
   
   config = lib.mkIf config.zstd-compression.enable {
 
-    fileSystems."/".options = lib.optionals (config.filesystems."/".fsType == "btrfs")[
+    fileSystems."/".options = lib.optionals (config.fileSystems."/".fsType == "btrfs")[
       "compress=zstd"
     ];
           
