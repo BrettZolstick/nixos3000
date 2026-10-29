@@ -40,9 +40,10 @@
 
       installer = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        speacialArgs = { inherit disko; };
         modules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ./hosts/installer.nix
+          ./hosts/installer/installer.nix
         ];
       };
 
