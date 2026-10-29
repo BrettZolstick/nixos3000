@@ -7,8 +7,8 @@ function ensureInternetConnection {
         Clear-Host
         Write-Host "The installer requires an internet connection" -ForegroundColor Red
         Write-Host "Please connect via ethernet or enter a new tty and connect to wifi with the following commands" -ForegroundColor Gray
-        Write-Host "nmcli device wifi list" -ForegroundColor DarkGray
-        Write-Host "nmcli device wifi connect <SSID> password <password>" -ForegroundColor DarkGray
+        Write-Host "nmcli device wifi list" -ForegroundColor Green
+        Write-Host "nmcli device wifi connect <SSID> password <password>" -ForegroundColor Green
 
         Start-Sleep -Seconds 2
         ensureInternetConnection
@@ -78,8 +78,8 @@ function generateAgeIdentity {
     Write-host "You will need to give it access to at least the root password of the host you are building" -ForegroundColor Gray
     Write-Host "Please add the public key to .sops.yaml in the repository, and give it access to any secrets it needs" -ForegroundColor Gray
     Write-Host "Then, from a device that already has access to the needed secrets, run the following from the repo's root dir" -ForegroundColor Gray
-    Write-Host "  nix-shell -p sops" -ForegroundColor DarkGray
-    Write-Host "  sops updatekeys secrets/*.yaml" -ForegroundColor DarkGray
+    Write-Host "  nix-shell -p sops" -ForegroundColor Green
+    Write-Host "  sops updatekeys secrets/*.yaml" -ForegroundColor Green
     Write-Host "Then push to the repo" -ForegroundColor Gray
     Write-Host
     Write-Host "Here is your age public key:" -ForegroundColor Gray

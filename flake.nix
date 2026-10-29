@@ -38,7 +38,8 @@
     {
     nixosConfigurations = {
 
-      # build the installer iso with "nix build '.#nixosConfigurations.installer.config.system.build.isoImage'"
+      # build the installer iso with "nix build .#nixosConfigurations.installer.config.system.build.isoImage"
+      # then flash with "dd if=<pathToIso> of=<pathToUSB> bs=4M conv=fsync status=progress"
       installer = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit disko; };
