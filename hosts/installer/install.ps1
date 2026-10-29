@@ -70,7 +70,9 @@ function generateAgeIdentity {
     $keyFile = "$keyDir/key.txt"
     
     install -d -m 700 $keyDir
-    age-keygen -o $keyFile
+    if (!(Test-Path $keyFile)){
+        age-keygen -o $keyFile
+    }
 
     $publicKey = age-keygen -y $keyFile
 
