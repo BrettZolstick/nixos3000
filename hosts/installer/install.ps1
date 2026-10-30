@@ -2,21 +2,17 @@ $ErrorActionPreference = "Inquire"
 $PSNativeCommandUseErrorActionPreference = $true;
 
 function ensureInternetConnection {
-    if (!(Test-Connection nixos.org -Count 1 -TimeoutSeconds 5)){
-
-        Clear-Host
-        Write-Host "The installer requires an internet connection" -ForegroundColor Red
-        Write-Host "Please connect via ethernet or enter a new tty and connect to wifi with the following commands" -ForegroundColor Gray
-        Write-Host "nmcli device wifi list" -ForegroundColor Green
-        Write-Host "nmcli device wifi connect <SSID> password <password>" -ForegroundColor Green
-
-        Start-Sleep -Seconds 2
+    try {
+        Test-Connection nixos.org -Count 1 -TimeoutSeconds 5
+    }catch{
+        nmtui
         ensureInternetConnection
         return
     }
 }
 
 function selectDisk {
+    
     $allDisks = (lsblk -O --json | ConvertFrom-Json ).blockdevices
 
     $validDisks = $allDisks | Where-Object {                     
@@ -27,6 +23,10 @@ function selectDisk {
         $_.hotplug -eq $false  
     }
 
+    Write-Host
+    Write-Host
+    Write-Host
+    
     $validDisks | Select-Object name, size, model, serial | Format-Table | Out-Host
 
     Write-Host "Select Target Disk - " -ForegroundColor Gray -NoNewline
@@ -52,6 +52,10 @@ function partitionDisk {
         $disk
     )
 
+    Write-Host
+    Write-Host
+    Write-Host
+
     Write-Host "Partitioning disk $($disk.path) with disko"
 
     disko `
@@ -62,6 +66,7 @@ function partitionDisk {
 }
 
 function generateAgeIdentity {
+
     if ($null -eq (findmnt --mountpoint /mnt)){
         throw "Filesystem is not mounted"
     }
@@ -76,6 +81,10 @@ function generateAgeIdentity {
 
     $publicKey = age-keygen -y $keyFile
 
+    Write-Host
+    Write-Host
+    Write-Host
+    
     Write-Host "A new age identity has been generated" -ForegroundColor Cyan
     Write-host "You will need to give it access to at least the root password of the host you are building" -ForegroundColor Gray
     Write-Host "Please add the public key to .sops.yaml in the repository, and give it access to any secrets it needs" -ForegroundColor Gray
@@ -117,6 +126,9 @@ function installNixOS {
                                #   been longer than 0 seconds. 
 
 
+    Write-Host
+    Write-Host
+    Write-Host
     Write-Host "Reboot to enter NixOS"
     
 }
