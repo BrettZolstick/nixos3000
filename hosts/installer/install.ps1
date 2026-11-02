@@ -74,7 +74,8 @@ function generateAgeIdentity {
     $keyDir = "/mnt/var/lib/sops-nix"
     $keyFile = "$keyDir/key.txt"
     
-    install -d -m 700 $keyDir
+    install --mode 700 --directory $keyDir
+
     if (!(Test-Path $keyFile)){
         age-keygen -o $keyFile
     }
@@ -97,9 +98,32 @@ function generateAgeIdentity {
     Write-Host $publicKey -ForegroundColor White
     $publicKey | qrencode -t ANSIUTF8  #output the key as a qr code
 
-    Write-Host "Authenticate this new identity first, then press enter to continue: " -NoNewline -ForegroundColor Yellow
+    Write-Host "Authenticate this new identity first, then press Enter to continue: " -NoNewline -ForegroundColor Yellow
     Read-Host
 
+}
+
+function generateSshKeyPair {
+
+    Write-Host
+    Write-Host
+    Write-Host
+    Write-Host "Generating SSH Key Pair" -ForegroundColor Cyan
+    Write-Host "Please enter a name for this new host: " -ForegroundColor Yellow -NoNewline
+    $hostName = Read-Host
+
+    $keyDir = "/mnt/etc/ssh/github"
+    $keyFile = "$keyDir/id_ed25519"
+
+    install --mode 700 --directory $keyDir
+
+    if (!(Test-Path $keyFile)){
+        ssh-keygen -f $keyFile -t ed25519 -C $hostName
+    }
+
+    cat "$keyFile.pub" | qrencode -t ANSIUTF8
+    Write-Host "Please add this SSH key to github, then press Enter to continue: " -ForegroundColor Yellow -NoNewline
+    Read-Host
 }
 
 function installNixOS {
