@@ -2,9 +2,7 @@ $ErrorActionPreference = "Inquire"
 $PSNativeCommandUseErrorActionPreference = $true;
 
 function ensureInternetConnection {
-    try {
-        Test-Connection nixos.org -Count 1 -TimeoutSeconds 5
-    }catch{
+    if (!(Test-Connection nixos.org -Count 1 -TimeoutSeconds 5 -Quiet)){
         nmtui
         ensureInternetConnection
         return
