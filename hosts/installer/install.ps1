@@ -160,4 +160,5 @@ function installNixOS {
 ensureInternetConnection
 partitionDisk -disk $(selectDisk)
 generateAgeIdentity
+generateSshKeyPair
 installNixOS
