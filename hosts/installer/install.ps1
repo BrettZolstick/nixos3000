@@ -160,3 +160,4 @@ partitionDisk -disk $(selectDisk)
 generateAgeIdentity
 generateSshKeyPair
 installNixOS
+reboot
