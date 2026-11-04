@@ -7,6 +7,8 @@ function ensureInternetConnection {
         ensureInternetConnection
         return
     }
+
+    Clear-Host
 }
 
 function selectDisk {
@@ -40,7 +42,9 @@ function selectDisk {
 
     $selectedDisk = $validDisks | Where-Object name -eq $requestedDisk
 
-    return $selectedDisk    
+    return $selectedDisk
+
+    Clear-Host    
 }
 
 
@@ -60,7 +64,8 @@ function partitionDisk {
         --mode destroy,format,mount `
         --flake "github:BrettZolstick/nixos3000#btrfs" `
         --argstr disk $($disk.path) # pass the disk path to my disko nix module
-    
+
+    Clear-Host
 }
 
 function generateAgeIdentity {
@@ -99,6 +104,7 @@ function generateAgeIdentity {
     Write-Host "Authenticate this new identity first, then press Enter to continue: " -NoNewline -ForegroundColor Yellow
     Read-Host
 
+    Clear-Host
 }
 
 function generateSshKeyPair {
@@ -113,15 +119,21 @@ function generateSshKeyPair {
     $keyDir = "/mnt/etc/ssh/github"
     $keyFile = "$keyDir/id_ed25519"
 
-    install --mode 700 --directory $keyDir
+    install --mode 750 --directory $keyDir --owner=root --group=wheel
 
     if (!(Test-Path $keyFile)){
-        ssh-keygen -f $keyFile -t ed25519 -C $hostName
+        ssh-keygen -f $keyFile -t ed25519 -C "$hostName github"
     }
+
+    chown root:wheel $keyFile
+    chmod 0640 $keyFile
+    chmod 0644 "$keyFile.pub"
 
     cat "$keyFile.pub" | qrencode -t ANSIUTF8
     Write-Host "Please add this SSH key to github, then press Enter to continue: " -ForegroundColor Yellow -NoNewline
     Read-Host
+
+    Clear-Host
 }
 
 function installNixOS {
