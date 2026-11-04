@@ -26,6 +26,7 @@
     home-manager,
     sops-nix,
     disko,
+    self,
     ...
   }:
     let
@@ -38,7 +39,7 @@
     {
     nixosConfigurations = {
 
-      # build the installer iso with "nix build .#nixosConfigurations.installer.config.system.build.isoImage"
+      # build the installer iso with "nix build"
       # then flash with "dd if=<pathToIso> of=<pathToUSB> bs=4M conv=fsync status=progress"
       installer = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -60,5 +61,7 @@
     };
 
     diskoConfigurations.btrfs = {disk,...}: import ./hosts/installer/disk-layouts/btrfs.nix {inherit disk;};
+
+    pkgs.x86_64-linux.default = self.nixosConfigurations.installer.config.system.build.isoImage;
   };
 }
