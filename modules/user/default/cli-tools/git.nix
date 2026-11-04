@@ -7,6 +7,7 @@
       settings = {
         user.email = "crazyeman83@gmail.com";
         user.name = "Ethan";
+        init.defaultBranch = "main";
       };
     };
 
