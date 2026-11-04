@@ -5,7 +5,7 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      settings = {
+      settings."*" = {
         ForwardAgent = false;
         AddKeysToAgent = "no";
         Compression = false;
