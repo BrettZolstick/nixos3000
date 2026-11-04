@@ -15,7 +15,7 @@
 #   nix-shell -p sops
 #   sops updatekeys secrets/*.yaml
 keys:
-  - &host-testLaptop age1gqgguhc0d5wllkuvxqhcmj99y95l5h95l6u247fafpvlv7pxhfes7p8zn7
+  - &host-testLaptop age14ugz55wp4mpddw75qraylrna4qc9k3242frremhm34rgm9funuasfdnt3k
   - &user-guest age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
   - &admin age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
 
