@@ -25,12 +25,6 @@ creation_rules:
   # give the desired age identities the access they need
   # then run "sops edit secrets/<file>.yaml"
   
-  # test entry
-  - path_regex: ^secrets/test\.yaml$
-    age:
-      - *admin
-      - *user-guest
-
   # Root password for test-laptop
   - path_regex: ^secrets/root-password-test-laptop\.yaml$
     age:
