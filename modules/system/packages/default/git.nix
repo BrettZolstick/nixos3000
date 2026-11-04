@@ -11,15 +11,11 @@
       };
     };
 
-    programs.ssh = {
-      enable = true;
-      settings = {
-        "github.com" = {
-          IdentityFile = "/etc/ssh/github/id_ed25519";
-          IdentitiesOnly = true;
-        };
-      };
-    };
+    programs.ssh.extraConfig = ''
+      Host github.com
+        IdentityFile /etc/ssh/github/id_ed25519
+        IdentitiesOnly yes    
+    '';
     
   };
 }
