@@ -31,13 +31,21 @@ creation_rules:
       - *admin
       - *user-guest
 
-  - path_regex: ^secrets/root-password-generic\.yaml$
+  # Root password for test-laptop
+  - path_regex: ^secrets/root-password-test-laptop\.yaml$
     age:
       - *admin
       - *host-testLaptop
 
+  # Password for Guest user
   - path_regex: ^secrets/user-password-guest\.yaml$
     age:
       - *admin
       - *host-testLaptop
       - *user-guest
+
+  # Read/Write access deploy key to the nixos3000 repo
+  - path_regex: ^secrets/nixos3000-rw-deploy-key\.yaml$
+    age:
+      - *admin
+      - *host-testLaptop
