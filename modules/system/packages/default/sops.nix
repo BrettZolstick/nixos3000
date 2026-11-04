@@ -1,9 +1,5 @@
 {lib, config, ...}: {
-
-  options.sops.enable = lib.mkOption {
-    default = true;
-  };
-
+  options.sops.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.sops.enable {
 
     sops.age = {
