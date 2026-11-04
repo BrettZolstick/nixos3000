@@ -52,8 +52,8 @@
       generic = nixpkgs.lib.nixosSystem{
         system = "x86_64-linux";
         modules = [
-          ./hosts/generic.nix
-          { networking.hostName = "generic"; }
+          ./hosts/testLaptop.nix
+          { networking.hostName = "testLaptop"; }
         ] ++ additionalModules;
       };
       

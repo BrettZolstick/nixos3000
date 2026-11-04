@@ -9,13 +9,13 @@ in
 {
 
 sops.secrets.root-password = {
-  sopsFile = ../secrets/root-password-generic.yaml;
+  sopsFile = ../secrets/root-password-testLaptop.yaml;
   key = "hashed-password";
   neededForUsers = true;
 };
 users.users.root.hashedPasswordFile = config.sops.secrets.root-password.path;
 
-imports = [../users/guest.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
+imports = [../users/test.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
 
 

@@ -44,8 +44,3 @@ creation_rules:
       - *host-testLaptop
       - *user-guest
 
-  # Read/Write access deploy key to the nixos3000 repo
-  - path_regex: ^secrets/nixos3000-rw-deploy-key\.yaml$
-    age:
-      - *admin
-      - *host-testLaptop
