@@ -1,11 +1,9 @@
 { disk }: {
-  
-  disko.devices.disk.main = {
 
+  disko.devices.disk.main = {
     type = "disk";
     device = disk;
     content = {
-
       type = "gpt";
       partitions = {
 
@@ -20,7 +18,7 @@
             mountOptions = [ "umask=0077" ];
           };
         };
-
+        
         swap = {
           size = "32G";
           content = {
@@ -28,7 +26,7 @@
             resumeDevice = true;
           }; 
         };
-
+        
         root = {
           size = "100%";
           content = {
@@ -37,11 +35,8 @@
             mountOptions = [ "compress=zstd" ];
           };
         };
-        
+           
       };
-      
-    };
-    
-  };
-  
+    };    
+  };  
 }

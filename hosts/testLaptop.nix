@@ -8,19 +8,17 @@ let
 in
 {
 
+# set root password
+users.users.root.hashedPasswordFile = config.sops.secrets.root-password.path;
 sops.secrets.root-password = {
   sopsFile = ../secrets/root-password-testLaptop.yaml;
   key = "hashed-password";
   neededForUsers = true;
 };
-users.users.root.hashedPasswordFile = config.sops.secrets.root-password.path;
 
 imports = [../users/test.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
-
-
 kde.enable = true; 
 sddm.enable = true;
- 
   
 }

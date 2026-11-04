@@ -6,6 +6,7 @@ let
   '';
 in
 {
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.networkmanager.enable = true;
@@ -21,5 +22,6 @@ in
     qrencode 
     disko.packages.${pkgs.stdenv.hostPlatform.system}.disko
     runInstaller
-  ];  
+  ];
+  
 }
