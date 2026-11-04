@@ -1,5 +1,5 @@
 {
-  description = "My third NixOS config";
+  description = "My third NixOS config"; #test from testLaptop
   
   inputs = {
 
