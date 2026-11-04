@@ -26,13 +26,13 @@ creation_rules:
   # then run "sops edit secrets/<file>.yaml"
   
   # Root password for test-laptop
-  - path_regex: ^secrets/root-password-test-laptop\.yaml$
+  - path_regex: ^secrets/root-password-testLaptop\.yaml$
     age:
       - *admin
       - *host-testLaptop
 
-  # Password for Guest user
-  - path_regex: ^secrets/user-password-guest\.yaml$
+  # Password for test user
+  - path_regex: ^secrets/user-password-test\.yaml$
     age:
       - *admin
       - *host-testLaptop
