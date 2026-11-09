@@ -119,14 +119,14 @@ function generateSshKeyPair {
     $keyDir = "/mnt/etc/ssh/github"
     $keyFile = "$keyDir/id_ed25519"
 
-    install --mode 750 --directory $keyDir --owner=root --group=wheel
+    install --mode 700 --directory $keyDir --owner=root --group=root
 
     if (!(Test-Path $keyFile)){
         ssh-keygen -f $keyFile -t ed25519 -C "$hostName github"
     }
 
-    chown root:wheel $keyFile
-    chmod 0640 $keyFile
+    chown root:root $keyFile
+    chmod 0600 $keyFile
     chmod 0644 "$keyFile.pub"
 
     cat "$keyFile.pub" | qrencode -t ANSIUTF8

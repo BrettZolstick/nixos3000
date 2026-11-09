@@ -21,6 +21,13 @@
           IdentitiesOnly yes    
       '';
     };
+
+    users.groups.github-auth = {};
+
+    systemd.tmpfiles.rules = [
+      "z /etc/ssh/github 750 root github-auth -"
+      "z /etc/ssh/github/id_ed25519 640 root github-auth -"
+    ];
     
   };
 }
