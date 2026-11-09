@@ -19,8 +19,8 @@
       description = "clone the nixos3000 repo to /etc/nixos if it doesn't exist there already";
 
       wantedBy = [ "multi-user.target" ];
-      requires = [ "network-online.target" "systemd.tmpfiles-setup.service" ];
-      after    = [ "network-online.target" "systemd.tmpfiles-setup.service" ];
+      requires = [ "network-online.target" "systemd-tmpfiles-setup.service" ];
+      after    = [ "network-online.target" "systemd-tmpfiles-setup.service" ];
 
       unitConfig = {
         ConditionPathExists = "!/etc/nixos/nixos3000/.git";
