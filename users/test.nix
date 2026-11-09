@@ -25,7 +25,7 @@ in
   users.users.${userName} = {
     isNormalUser = true;
     description = userName;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "github-auth"];
     shell = pkgs.bash;
     hashedPasswordFile = config.sops.secrets.guest-user-password.path;
   };
