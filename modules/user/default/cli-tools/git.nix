@@ -8,6 +8,7 @@
         user.email = "crazyeman83@gmail.com";
         user.name = "Ethan";
         init.defaultBranch = "main";
+        safe.directory = "/etc/nixos/nixos3000";
       };
     };
 
@@ -15,7 +16,7 @@
       enable = true;
       settings = {
         "github.com" = {
-          IdentityFile = "/etc/ssh/github/id_ed25519"; # user must be a wheel member
+          IdentityFile = "/etc/ssh/github/id_ed25519"; # user must be a member of the "github-auth" group
           IdentitiesOnly = true;
         };
       };
