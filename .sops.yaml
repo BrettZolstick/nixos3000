@@ -24,6 +24,12 @@ creation_rules:
   # to add/encrypt a secret, make an entry pointing to the path of the yaml file you will make
   # give the desired age identities the access they need
   # then run "sops edit secrets/<file>.yaml"
+
+  # Deploy key with read-only access to the repo
+  - path_regex: ^secrets/nixos3000-deploy-key\.yaml$
+    age:
+      - *admin
+      - *host-testLaptop
   
   # Root password for test-laptop
   - path_regex: ^secrets/root-password-testLaptop\.yaml$
