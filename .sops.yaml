@@ -18,7 +18,6 @@ keys:
   - &admin age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
   - &user-test age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
   - &host-testLaptop age14ugz55wp4mpddw75qraylrna4qc9k3242frremhm34rgm9funuasfdnt3k
-  - 
 
 creation_rules:
 
