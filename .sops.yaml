@@ -15,15 +15,18 @@
 #   nix-shell -p sops
 #   sops updatekeys secrets/*.yaml
 keys:
-  - &host-testLaptop age14ugz55wp4mpddw75qraylrna4qc9k3242frremhm34rgm9funuasfdnt3k
-  - &user-guest age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
   - &admin age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
+  - &user-test age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
+  - &host-testLaptop age14ugz55wp4mpddw75qraylrna4qc9k3242frremhm34rgm9funuasfdnt3k
+  - 
 
 creation_rules:
 
   # to add/encrypt a secret, make an entry pointing to the path of the yaml file you will make
   # give the desired age identities the access they need
   # then run "sops edit secrets/<file>.yaml"
+  #
+  # generate password hashes with "mkpasswd method=yescrypt"
 
   # Deploy key with read-only access to the repo
   - path_regex: ^secrets/nixos3000-deploy-key\.yaml$
@@ -31,7 +34,7 @@ creation_rules:
       - *admin
       - *host-testLaptop
   
-  # Root password for test-laptop
+  # Root password for test-laptop 
   - path_regex: ^secrets/root-password-testLaptop\.yaml$
     age:
       - *admin
@@ -42,5 +45,33 @@ creation_rules:
     age:
       - *admin
       - *host-testLaptop
-      - *user-guest
+      - *user-test
+
+  # Password for personal user
+  - path_regex: ^secrets/user-password-personal\.yaml$
+    age:
+      - *admin
+      - *host-testLaptop
+      # - *user-personal
+
+  # Password for gaming user
+  - path_regex: ^secrets/user-password-gaming\.yaml$
+    age:
+      - *admin
+      - *host-testLaptop
+      # - *user-gaming
+
+  # Password for cookiegroup user
+  - path_regex: ^secrets/user-password-cookiegroup\.yaml$
+    age:
+      - *admin
+      - *host-testLaptop
+      # - *user-cookiegroup
+
+  # Password for plexus user
+  - path_regex: ^secrets/user-password-plexus\.yaml$
+    age:
+      - *admin
+      - *host-testLaptop
+      # - *user-plexus
 

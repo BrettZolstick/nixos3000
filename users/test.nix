@@ -9,14 +9,7 @@ let
 in
 {
 
-  sops.secrets.guest-user-password = {
-    # This requires a hashed password
-    # 
-    #   nix shell nixpkgs#mkpasswd
-    #   mkpasswd --method=yescrypt
-    #
-    # Then add it to sops in this configs secrets/user-passwords/<username>.yaml
-    #   sops edit secrets/user-passwords/<username>.yaml
+  sops.secrets."${userName}-user-password" = {
     sopsFile = ../secrets/user-password-${userName}.yaml;
     key = "hashed-password";
     neededForUsers = true;
@@ -27,7 +20,7 @@ in
     description = userName;
     extraGroups = ["networkmanager" "wheel" "github-auth"];
     shell = pkgs.bash;
-    hashedPasswordFile = config.sops.secrets.guest-user-password.path;
+    hashedPasswordFile = config.sops.secrets."${userName}-user-password".path;
   };
   
   home-manager = {
