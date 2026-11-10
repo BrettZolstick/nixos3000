@@ -16,7 +16,13 @@ sops.secrets.root-password = {
   neededForUsers = true;
 };
 
-imports = [../users/test.nix] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
+imports = [
+  ../users/test.nix
+  ../users/personal.nix
+  ../users/gaming.nix
+  ../users/cookiegroup.nix
+  ../users/plexus.nix
+] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
 kde.enable = true; 
 sddm.enable = true;
