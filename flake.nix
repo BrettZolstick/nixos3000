@@ -1,5 +1,5 @@
 {
-  description = "My third NixOS config (testedit 2)";
+  description = "My third NixOS config";
   
   inputs = {
 
