@@ -33,6 +33,11 @@ in
         homeDirectory = "/home/${userName}";
         stateVersion = "26.05";
       };
+
+      firefox.enable = true;
+
+
+
     };
   };
 }
