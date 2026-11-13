@@ -17,7 +17,7 @@
 keys:
   - &admin age1mtu96fcejjng3t645lk8y9x2hkxgel0wmawy6756hkvsvx7knddqtydzu4
   - &user-test age1at2lj6440a8ms4kk6kckppukxvrcrd4xd05c2xq9q42ctljmda8spvlef0
-  - &host-testLaptop age1t98z4ayqn3q4a935pdc49g5dsqt353f7ksq52ww2umsqjt2ccv2qhkdpmg
+  - &host-testLaptop age1hj9wrepfsrn8c25uc7e304p82u0lnjqg7mt2asjlvz68ccxwvf7suew99q
 
 creation_rules:
 
