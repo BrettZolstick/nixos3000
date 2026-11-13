@@ -167,12 +167,22 @@ function generateSshKeyPair {
 }
 
 function installNixOS {
+    param(
+        [Boolean]$enableEncryption
+    )
 
     # Generate hardware-configuration.nix onto the target system and copy it to the live environment so the flake can be built
     Write-Host "Generating hardware-configuration.nix" -ForegroundColor Gray
     New-Item -Path "/mnt/etc/nixos" -ItemType Directory -Force | Out-Null
     nixos-generate-config --root /mnt --dir "/mnt/etc/nixos"
     Copy-Item -Path "/mnt/etc/nixos/hardware-configuration.nix" -Destination "/etc/nixos/hardware-configuration.nix" -Force
+
+
+    if ($enableEncryption -eq $true) {
+        New-Item -Path "/mnt/etc/nixos/luks.nix" -Force | Out-Null
+        Set-Content -Path "/mnt/etc/nixos/luks.nix" -Value "{boot.initrd.luks.devices.cryptroot.device = /dev/disk/by-partlabel/encrypted-disk-1}" -Force | Out-Null
+        Copy-Item -Path "/mnt/etc/nixos/luks.nix" -Destination "/etc/nixos/luks.nix" -Force
+    }
 
     # Install NixOS
     Write-Host "Installing NixOS" -ForegroundColor Gray
@@ -198,8 +208,9 @@ function installNixOS {
 }
 
 ensureInternetConnection
-partitionDisk -disk $(selectDisk) -enableEncryption $(askForDiskEncryption)
+$enableEncryption = askForDiskEncryption
+partitionDisk -disk $(selectDisk) -enableEncryption $enableEncryption
 generateAgeIdentity
 generateSshKeyPair
-installNixOS
+installNixOS -enableEncryption $enableEncryption
 reboot

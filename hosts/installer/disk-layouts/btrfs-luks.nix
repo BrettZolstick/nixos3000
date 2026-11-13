@@ -22,7 +22,8 @@
           };
 
           encrypted = {
-            size = "100%"; 
+            size = "100%";
+            label = "encrypted-disk-1";
             content = {
               type = "luks"; 
               name = "cryptroot"; 
