@@ -208,8 +208,9 @@ function installNixOS {
 }
 
 ensureInternetConnection
+$selectedDisk = selectDisk
 $enableEncryption = askForDiskEncryption
-partitionDisk -disk $(selectDisk) -enableEncryption $enableEncryption
+partitionDisk -disk $selectedDisk -enableEncryption $enableEncryption
 generateAgeIdentity
 generateSshKeyPair
 installNixOS -enableEncryption $enableEncryption
