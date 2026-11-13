@@ -180,7 +180,7 @@ function installNixOS {
 
     if ($enableEncryption -eq $true) {
         New-Item -Path "/mnt/etc/nixos/luks.nix" -Force | Out-Null
-        Set-Content -Path "/mnt/etc/nixos/luks.nix" -Value '{boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-partlabel/encrypted-disk-1"}' -Force | Out-Null
+        Set-Content -Path "/mnt/etc/nixos/luks.nix" -Value '{boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-partlabel/encrypted-disk-1";}' -Force | Out-Null
         Copy-Item -Path "/mnt/etc/nixos/luks.nix" -Destination "/etc/nixos/luks.nix" -Force
     }
 
