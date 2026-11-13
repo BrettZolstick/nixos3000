@@ -61,6 +61,7 @@
     };
 
     diskoConfigurations.btrfs = {disk,...}: import ./hosts/installer/disk-layouts/btrfs.nix {inherit disk;};
+    diskoConfigurations.btrfs-luks = {disk,...}: import ./hosts/installer/disk-layouts/btrfs-luks.nix {inherit disk;};
 
     packages.x86_64-linux.default = self.nixosConfigurations.installer.config.system.build.isoImage;
   };

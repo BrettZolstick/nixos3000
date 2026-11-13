@@ -42,23 +42,53 @@ function selectDisk {
 
     $selectedDisk = $validDisks | Where-Object name -eq $requestedDisk
 
-    return $selectedDisk
-
     Clear-Host    
+    return $selectedDisk
 }
 
+function askForDiskEncryption {
 
+    Write-Host
+    Write-Host
+    Write-Host
+
+    Write-Host "Would you like to enable encryption on this disk? Y/N " -ForegroundColor Yellow -NoNewline
+    $Answer = Read-Host
+
+    switch ($Answer) {
+        "y" { Clear-Host ; return $true }
+        "n" { Clear-Host ; return $false }
+        default {
+            Write-Host "Input not accepted, press Enter to try again " -ForegroundColor Red -NoNewline
+            Read-Host
+            askForDiskEncryption
+            Return
+        } 
+    }
+}
+
+ 
 function partitionDisk {
     param(
         [Parameter(Mandatory=$true)]
-        $disk
+        $disk,
+        $enableEncryption
     )
 
     Write-Host
     Write-Host
-    Write-Host
+    Write-Host    
 
     Write-Host "Partitioning disk $($disk.path) with disko"
+
+    if ($enableEncryption -eq $true) {
+        disko `
+            --mode destroy,format,mount `
+            --flake "github:BrettZolstick/nixos3000#btrfs-luks" `
+            --argstr disk $($disk.path) # pass the disk path to my disko nix modulei
+        Clear-Host
+        return 
+    }
 
     disko `
         --mode destroy,format,mount `
