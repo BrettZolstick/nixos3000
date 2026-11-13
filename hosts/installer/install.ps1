@@ -85,7 +85,7 @@ function partitionDisk {
         disko `
             --mode destroy,format,mount `
             --flake "github:BrettZolstick/nixos3000#btrfs-luks" `
-            --argstr disk $($disk.path) # pass the disk path to my disko nix modulei
+            --argstr disk $($disk.path) # pass the disk path to my disko nix module
         Clear-Host
         return 
     }
@@ -198,7 +198,7 @@ function installNixOS {
 }
 
 ensureInternetConnection
-partitionDisk -disk $(selectDisk)
+partitionDisk -disk $(selectDisk) -enableEncryption $(askForDiskEncryption)
 generateAgeIdentity
 generateSshKeyPair
 installNixOS
