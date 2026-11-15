@@ -9,6 +9,9 @@
         enableBashIntegration = true;
         enableFishIntegration = true;
       };
+      settings = {
+        shell = "${pkgs.fish}/bin/fish";
+      };
     };
       
   };
