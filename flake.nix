@@ -39,7 +39,13 @@
       additionalModules = [
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
-        {home-manager.sharedModules = [sops-nix.homeManagerModules.sops];}
+        niri-flake.nixosModules.niri
+        {
+          home-manager.sharedModules = [
+            sops-nix.homeManagerModules.sops
+          ];
+        }
+        
       ];
     in
     {
