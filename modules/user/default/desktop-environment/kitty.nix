@@ -1,4 +1,4 @@
-{config, lib, ...}: {
+{config, lib, pkgs, ...}: {
   options.kitty.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.kitty.enable {
 
