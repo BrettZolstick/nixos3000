@@ -24,7 +24,7 @@ imports = [
   ../users/plexus.nix
 ] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
 
-kde.enable = true; 
-sddm.enable = true;
+# kde.enable = true; 
+# sddm.enable = true;
   
 }
