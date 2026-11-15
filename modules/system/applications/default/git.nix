@@ -8,6 +8,7 @@
         user.email = "crazyeman83@gmail.com";
         user.name = "Ethan";
         init.defaultBranch = "main";
+        safe.directory = "/etc/nixos/nixos3000";
       };
     };
 
