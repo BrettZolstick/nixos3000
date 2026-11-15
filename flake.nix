@@ -20,10 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri-flake = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -32,14 +28,12 @@
     home-manager,
     sops-nix,
     disko,
-    niri-flake,
     ...
   }:
     let
       additionalModules = [
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
-        niri-flake.homeModules.config
         {
           home-manager.sharedModules = [
             sops-nix.homeManagerModules.sops
