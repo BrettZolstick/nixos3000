@@ -39,7 +39,7 @@
       additionalModules = [
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
-        niri-flake.nixosModules.niri
+        niri-flake.homeModules.config
         {
           home-manager.sharedModules = [
             sops-nix.homeManagerModules.sops
