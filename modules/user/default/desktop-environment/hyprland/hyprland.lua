@@ -5,5 +5,4 @@ require("hyprland.behavior")
 require("hyprland.dwindle")
 require("hyprland.input")
 require("hyprland.keybinds")
-require("hyprland.startup")
 
