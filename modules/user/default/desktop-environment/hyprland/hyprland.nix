@@ -11,7 +11,7 @@
 
     xdg.configFile."hypr/hyprland".source =
       config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/modules/user/default/desktop-environment/hyprland";
+        "${config.home.homeDirectory}/nixos3000/modules/user/default/desktop-environment/hyprland";
 
     xdg.configFile."hypr/stylix.lua".text = ''
       return {
