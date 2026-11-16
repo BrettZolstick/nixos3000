@@ -1,4 +1,4 @@
-
+spawn-at-startup "noctalia"
 
 binds {
 	Mod+Return { spawn "kitty"; }
