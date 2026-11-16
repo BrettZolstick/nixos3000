@@ -4,3 +4,7 @@ binds {
 	Mod+Return { spawn "kitty"; }
 	Mod+Q { close-window; }
 }
+
+layout {
+	default-column-width { proportion 1.0; }
+}
