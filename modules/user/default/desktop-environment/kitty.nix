@@ -11,6 +11,7 @@
       };
       settings = {
         shell = "${pkgs.fish}/bin/fish";
+        remember_window_size = "no";
       };
     };
       
