@@ -171,12 +171,11 @@ hl.config({
       enabled = true, -- Draw a drop shadow around windows. Default: true.
       color = "0xee1a1a1a", -- Color and transparency of focused shadows. Default: 0xee1a1a1a.
       color_inactive = "0xee1a1a1a", -- Shadow color for unfocused windows; normally inherits the active shadow color.
-      offset = "{0,0}", -- Horizontal and vertical distance to shift the window shadow. Default: {0,0}. Horizontal and vertical shadow displacement.
+      offset = {0,0}, -- Horizontal and vertical distance to shift the window shadow. Default: {0,0}. Horizontal and vertical shadow displacement.
       range = 4, -- How far the shadow extends from window edges. Default: 4.
       render_power = 3, -- Rate at which the shadow fades away from window edges. Default: 3.
       scale = 1.0, -- Scale of the shadow geometry. Default: 1.0.
       sharp = false, -- Use sharp shadows instead of a soft falloff. Default: false.
-
     },
   },
 })
@@ -206,23 +205,6 @@ hl.config({
   },
 })
 
--- --- DECORATION.WOBBLE ---
-hl.config({
-  decoration = {
-    wobble = {
-      enabled = false, -- Enable a springy wobble when dragging windows. Default: false.
-      mesh = 12, -- Mesh detail of wobbling window edges. Default: 12.
-      stiffness = 200, -- Spring stiffness of the wobble deformation. Default: 200.
-      damping = 12, -- How fast spring wobble settles. Default: 12.
-      mass = 1, -- Simulated mass of wobbling windows. Default: 1.
-      intensity = 0.2, -- Strength of wobble motion. Default: 0.2.
-      value_epsilon = 0.25, -- Distance threshold below which wobble stops. Default: 0.25.
-      velocity_epsilon = 2, -- Speed threshold below which wobble stops. Default: 2.
-
-    },
-  },
-})
-
 -- --- DECORATION.BLUR ---
 hl.config({
   decoration = {
@@ -238,7 +220,6 @@ hl.config({
       passes = 1, -- Number of blur passes; higher costs more GPU time. Default: 1.
       popups = false, -- Blur menus and other popup surfaces. Default: false.
       popups_ignorealpha = 0.2, -- Skip popup blur below this alpha threshold. Default: 0.2.
-      proportional = false, -- Scale blur strength with per-pixel opacity. Default: false.
       size = 8, -- Spatial blur radius. Default: 8.
       special = false, -- Blur background behind special workspaces. Default: false.
       vibrancy = 0.1696, -- Increase saturation of blurred content. Default: 0.1696.
