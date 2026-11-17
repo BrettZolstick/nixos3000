@@ -1,5 +1,5 @@
 { lib, config, ... }: {
-  options.hyprland.enable = lib.mkOption {default = true;};
+  options.hyprland.enable = lib.mkOption {default = false;};
   config = lib.mkIf config.hyprland.enable {
   
     wayland.windowManager.hyprland = {
@@ -22,14 +22,15 @@
           general.gaps_out = 20; # Space between windows and monitor edges. Default: 20.
           general.gaps_workspaces = 0; # Additional spacing between workspace views. Default: 0.
           general.hover_icon_on_border = true; # Show resize cursor when hovering a resizable border. Default: true.
-          general.modal_parent_blocking = true; # Control interactivity of windows behind modal dialogs. Default: true.
+          general.modal_parent_blocking = true; # Block interaction with a parent window while its modal dialog is open. Default: true.
           general.no_focus_fallback = false; # Keep focus unchanged if directional focus finds no target. Default: false.
           general.resize_corner = 0; # Select the forced corner for resizing floating windows. Default: 0.
           general.resize_on_border = false; # Allow dragging window borders or gaps to resize. Default: false.
-          general.layout = "dwindle"; # Recursively splits space as windows are added.
-                          # "master"; # Keeps one or more master windows with the others in a stack.
-                          # "scrolling"; # Places windows on a scrolling tape, similar to Niri.
-                          # "monocle"; # Displays one maximized tiled window at a time.
+          general.layout = "dwindle"; # Choose how tiled windows are arranged on each workspace.
+                           # "dwindle"; # Recursively splits space as windows are added.
+                           # "master"; # Keeps one or more master windows with the others in a stack.
+                           # "scrolling"; # Places windows on a scrolling tape, similar to Niri.
+                           # "monocle"; # Displays one maximized tiled window at a time.
           # --- DWINDLE ---
           # Dwindle split direction: Which side of the existing window receives new windows.
           # dwindle.force_split = 0; # Default. Follow the cursor/split context.
@@ -38,17 +39,17 @@
 
           # dwindle.preserve_split = false; # Keep the current split direction as windows change. Default: false.
           # dwindle.smart_split = false; # Use cursor position to choose the next split direction. Default: false.
-          # dwindle.smart_resizing = true; # Configure smart resizing behavior in dwindle. Default: true.
-          # dwindle.permanent_direction_override = false; # Configure permanent direction override behavior in dwindle. Default: false.
+          # dwindle.smart_resizing = true; # Choose resize direction based on the mouse position instead of the tiling layout. Default: true.
+          # dwindle.permanent_direction_override = false; # Keep a manually chosen split direction until you change or clear it. Default: false.
           # dwindle.special_scale_factor = 1; # Adjust special scale factor for dwindle. Default: 1.
-          # dwindle.split_width_multiplier = 1.0; # Configure split width multiplier behavior in dwindle. Default: 1.0.
-          # dwindle.use_active_for_splits = true; # Configure use active for splits behavior in dwindle. Default: true.
+          # dwindle.split_width_multiplier = 1.0; # Adjust when Dwindle divides windows side-by-side versus top-and-bottom. Default: 1.0.
+          # dwindle.use_active_for_splits = true; # Base new splits on the focused window instead of the mouse position. Default: true.
           # dwindle.default_split_ratio = 1.0; # Default split ratio; 1.0 produces equal halves. Default: 1.0.
           # Dwindle split bias: Which half is affected by the configured split ratio.
           # dwindle.split_bias = 0; # Default. Bias the upper or left half.
           # dwindle.split_bias = 1; # Bias the currently focused window.
 
-          # dwindle.precise_mouse_move = false; # Configure precise mouse move behavior in dwindle. Default: false.
+          # dwindle.precise_mouse_move = false; # Place dragged windows more precisely according to the drop position. Default: false.
 
           # --- MASTER ---
           # master.allow_small_split = false; # Permit horizontal splits among multiple master windows. Default: false.
@@ -136,8 +137,8 @@
           # --- DECORATION.SHADOW ---
           decoration.shadow.enabled = true; # Draw a drop shadow around windows. Default: true.
           decoration.shadow.color = "0xee1a1a1a"; # Color and transparency of focused shadows. Default: 0xee1a1a1a.
-          decoration.shadow.color_inactive = "0xee1a1a1a"; # Default: (omitted / unset). Control the color inactive appearance for decoration / shadow.
-          decoration.shadow.offset = "0xee1a1a1a"; # Default: {0,0}. Horizontal and vertical shadow displacement.
+          decoration.shadow.color_inactive = "0xee1a1a1a"; # Shadow color for unfocused windows; normally inherits the active shadow color.
+          decoration.shadow.offset = "{0,0}"; # Horizontal and vertical distance to shift the window shadow. Default: {0,0}. Horizontal and vertical shadow displacement.
           decoration.shadow.range = 4; # How far the shadow extends from window edges. Default: 4.
           decoration.shadow.render_power = 3; # Rate at which the shadow fades away from window edges. Default: 3.
           decoration.shadow.scale = 1.0; # Scale of the shadow geometry. Default: 1.0.
@@ -146,7 +147,7 @@
           # --- DECORATION.GLOW ---
           decoration.glow.enabled = false; # Enable a glow drawn inside windows. Default: false.
           decoration.glow.color = "0xee1a1a1a"; # Color of the inner glow on focused windows. Default: 0xee1a1a1a.
-          decoration.glow.color_inactive = "0xee1a1a1a"; # Default: (omitted / unset). Control the color inactive appearance for decoration / glow.
+          decoration.glow.color_inactive = "0xee1a1a1a"; # Inner-glow color for unfocused windows; normally inherits the active glow color.
           decoration.glow.range = 10; # Width/radius of the inner glow effect. Default: 10.
           decoration.glow.render_power = 3; # Falloff curve of the inner glow effect. Default: 3.
 
@@ -182,17 +183,18 @@
           decoration.blur.vibrancy = 0.1696; # Increase saturation of blurred content. Default: 0.1696.
           decoration.blur.vibrancy_darkness = 0.0; # Vibrancy intensity in the dark parts of the scene. Default: 0.0.
           decoration.blur.xray = false; # Exclude tiled windows from floating-window blur sampling. Default: false.
-          decoration.blur.variant = "kawase"; # Default. Conventional, relatively inexpensive background blur.
-                                  # "acrylic"; # Refracted liquid-glass-like acrylic blur.
-                                  # "aurora"; # Adds aurora-like colored light streaks.
-                                  # "drops"; # Simulates raindrops on a glass surface.
-                                  # "fluid_jar"; # Uses a simulated moving fluid pattern; can be expensive.
-                                  # "frost"; # Creates a cracked-ice appearance.
-                                  # "haze"; # Uses a diffused, pearlescent haze.
-                                  # "heat_shimmer"; # Adds a subtle heat-distortion effect.
-                                  # "prism"; # Uses a triangular refraction pattern.
-                                  # "ripple"; # Adds ripples in response to clicks.
-                                  # "water"; # Simulates water-like heightmap ripples.
+          decoration.blur.variant = "kawase"; # Choose the visual effect used when blurring transparent backgrounds.
+                                    # "kawase"; # Default. Conventional, relatively inexpensive background blur.
+                                    # "acrylic"; # Refracted liquid-glass-like acrylic blur.
+                                    # "aurora"; # Adds aurora-like colored light streaks.
+                                    # "drops"; # Simulates raindrops on a glass surface.
+                                    # "fluid_jar"; # Uses a simulated moving fluid pattern; can be expensive.
+                                    # "frost"; # Creates a cracked-ice appearance.
+                                    # "haze"; # Uses a diffused, pearlescent haze.
+                                    # "heat_shimmer"; # Adds a subtle heat-distortion effect.
+                                    # "prism"; # Uses a triangular refraction pattern.
+                                    # "ripple"; # Adds ripples in response to clicks.
+                                    # "water"; # Simulates water-like heightmap ripples.
 
           # --- DECORATION.BLUR.ACRYLIC ---
           # decoration.blur.acrylic.aberration = 0.025; # Color fringe distortion for acrylic-style blur. Default: 0.025.
@@ -250,39 +252,45 @@
 
           # --- INPUT ---
           input.force_no_accel = true; # Bypass pointer acceleration for rawer mouse movement. Default: false.
-          input.accel_profile = "flat"; # Constant gain without speed-dependent acceleration.
-                              # "adaptive"; # Speed-dependent acceleration, faster when moving quickly.
-                              # "custom"; # Use a custom pointer acceleration curve supported by libinput.
+          input.accel_profile = "flat"; # Choose how pointer speed changes as you move the mouse.
+                                # "flat"; # Use a constant speed multiplier without mouse acceleration.
+                                # "adaptive"; # Speed-dependent acceleration, faster when moving quickly.
+                                # "custom"; # Use a custom pointer acceleration curve supported by libinput.
 
-          input.emulate_discrete_scroll = 1; # Default. Emulate only for non-standard wheel events.
-                                        # 0; # Do not emulate discrete wheel steps.
-                                        # 2; # Force emulation for every wheel event.
+          input.emulate_discrete_scroll = 1; # Choose when to turn fine-grained wheel movement into separate scroll steps.
+                                          # 0; # Do not emulate discrete wheel steps.
+                                          # 1; # Default. Emulate only for non-standard wheel events.
+                                          # 2; # Force emulation for every wheel event.
 
-          input.float_switch_override_focus = 1; # Default. Follow pointer when switching between tiled and floating.
-                                            # 0; # Never change focus specifically because a window switches layout.
-                                            # 2; # Also follow pointer when switching between floating windows.
+          input.float_switch_override_focus = 1; # Choose when switching between tiled and floating windows changes focus.
+                                              # 0; # Never change focus specifically because a window switches layout.
+                                              # 1; # Default. Follow pointer when switching between tiled and floating.
+                                              # 2; # Also follow pointer when switching between floating windows.
 
-          input.focus_on_close = 0; # Default. Focus the next eligible window.
-                                # 1; # Focus the window currently under the pointer.
-                                # 2; # Focus the most recently active window.
+          input.focus_on_close = 0; # Choose which window receives keyboard focus after one closes.
+                                 # 0; # Default. Focus the next eligible window.
+                                 # 1; # Focus the window currently under the pointer.
+                                 # 2; # Focus the most recently active window.
 
-          input.follow_mouse = 1; # Default. Moving the pointer focuses the window beneath it.
-                              # 0; # Moving the pointer does not change keyboard focus.
-                              # 2; # Pointer focus is separate; clicking a window gives it keyboard focus.
-                              # 3; # Pointer and keyboard focus remain separate even on click.
+          input.follow_mouse = 1; # Choose how moving or clicking the mouse changes keyboard focus.
+                               # 0; # Moving the pointer does not change keyboard focus.
+                               # 1; # Default. Moving the pointer focuses the window beneath it.
+                               # 2; # Pointer focus is separate; clicking a window gives it keyboard focus.
+                               # 3; # Pointer and keyboard focus remain separate even on click.
 
           input.follow_mouse_shrink = 0; # Shrink hover areas before mouse-following focus changes. Default: 0.
           input.follow_mouse_threshold = 0.0; # Minimum pointer travel before changing focus. Default: 0.0.
           input.kb_layout = "us"; # XKB keyboard layout name(s). Default: "us".
-          input.left_handed = false; # Configure left handed behavior in input. Default: false.
+          input.left_handed = false; # Swap the left and right mouse buttons. Default: false.
           input.mouse_refocus = true; # Refocus hovered windows when crossing into their areas. Default: true.
           input.natural_scroll = false; # Move content with the finger/wheel direction. Default: false.
           input.numlock_by_default = true; # Enable Num Lock at session startup. Default: false.
 
-          input.off_window_axis_events = 1; # Default. Forward events with out-of-bounds coordinates.
-                                        # 0; # Ignore wheel events outside the focused window.
-                                        # 2; # Send events using coordinates clamped inside the focused window.
-                                        # 3; # Warp the cursor to the nearest point inside the focused window.
+          input.off_window_axis_events = 1; # Choose how scrolling works over the border or gap of the focused window.
+                                         # 0; # Ignore wheel events outside the focused window.
+                                         # 1; # Default. Forward events with out-of-bounds coordinates.
+                                         # 2; # Send events using coordinates clamped inside the focused window.
+                                         # 3; # Warp the cursor to the nearest point inside the focused window.
 
           input.repeat_delay = 200; # Milliseconds before held keys begin repeating. Default: 600.
           input.repeat_rate = 40; # Number of repeats per second for held keys. Default: 25.
@@ -299,13 +307,15 @@
           # --- INPUT.TOUCHPAD ---
           input.touchpad.clickfinger_behavior = true; # Use number of fingers pressed to choose mouse button. Default: false.
           input.touchpad.disable_while_typing = true; # Reduce accidental touches while typing. Default: true.
-          input.touchpad.drag_3fg = 0; # Default. Disable multi-finger drag.
-                                  # 1; # Drag by moving three fingers together.
-                                  # 2; # Drag by moving four fingers together.
+          input.touchpad.drag_3fg = 0; # Choose whether three- or four-finger movement can drag items.
+                                    # 0; # Default. Disable multi-finger drag.
+                                    # 1; # Drag by moving three fingers together.
+                                    # 2; # Drag by moving four fingers together.
 
-          input.touchpad.drag_lock = 0; # Default. Releasing the finger ends the drag.
-                                    # 1; # Keep the drag briefly after release, subject to a timeout.
-                                    # 2; # Use sticky drag lock until explicitly released.
+          input.touchpad.drag_lock = 0; # Choose whether a touchpad drag continues after lifting your finger.
+                                     # 0; # Default. Releasing the finger ends the drag.
+                                     # 1; # Keep the drag briefly after release, subject to a timeout.
+                                     # 2; # Use sticky drag lock until explicitly released.
 
           input.touchpad.flip_x = false; # Invert horizontal touchpad movement. Default: false.
           input.touchpad.flip_y = false; # Invert vertical touchpad movement. Default: false.
@@ -317,30 +327,31 @@
           input.touchpad.tap_to_click = true; # Treat a tap on the touchpad as a mouse click. Default: true.
 
           # --- INPUT.TOUCHDEVICE ---
-          input.touchdevice.enabled = true; # Enable or disable the input / touchdevice feature. Default: true.
+          input.touchdevice.enabled = true; # Accept input from touchscreens. Default: true.
           input.touchdevice.transform = 0; # Default. No rotation or mirroring.
 
 
           # --- INPUT.VIRTUALKEYBOARD ---
-          input.virtualkeyboard.release_pressed_on_close = false; # Configure release pressed on close behavior in input / virtualkeyboard. Default: false.
+          input.virtualkeyboard.release_pressed_on_close = false; # Release keys left held down when a virtual keyboard closes. Default: false.
 
-          input.virtualkeyboard.share_states = 2; # Default. Share except for input-method-editor clients.
-                                              # 0; # Keep virtual keyboard key states separate.
-                                              # 1; # Share key and modifier states with other keyboards.
+          input.virtualkeyboard.share_states = 2; # Choose whether virtual and physical keyboards share held-key states.
+                                               # 0; # Keep virtual keyboard key states separate.
+                                               # 1; # Share key and modifier states with other keyboards.
+                                               # 2; # Default. Share except for input-method-editor clients.
 
 
           # --- INPUT.TABLET ---
-          input.tablet.enabled = true; # Enable or disable the input / tablet feature. Default: true.
+          input.tablet.enabled = true; # Accept drawing-tablet pen and tablet input. Default: true.
           input.tablet.output = 1; # Monitor receiving drawing-tablet input.
           input.tablet.transform = 0; # Default. No rotation or mirroring.
 
-          input.tablet.absolute_region_position = false; # Configure absolute region position behavior in input / tablet. Default: false.
-          input.tablet.relative_input = false; # Configure relative input behavior in input / tablet. Default: false.
-          input.tablet.left_handed = false; # Configure left handed behavior in input / tablet. Default: false.
-          input.tablet.active_area_position = "{0,0}"; # Default: {0,0}. Configure active area position behavior in input / tablet.
-          input.tablet.active_area_size = "{0,0}"; # Default: {0,0}. Configure active area size behavior in input / tablet.
-          input.tablet.region_position = "{0,0}"; # Default: {0,0}. Configure region position behavior in input / tablet.
-          input.tablet.region_size = "{0,0}"; # Default: {0,0}. Physical region of the screen mapped to tablet input.
+          input.tablet.absolute_region_position = false; # Treat the tablet mapping region as an absolute screen position when no output is set. Default: false.
+          input.tablet.relative_input = false; # Move the pointer by pen movement instead of placing it at the pen position. Default: false.
+          input.tablet.left_handed = false; # Swap the tablet pen/tablet orientation for left-handed use. Default: false.
+          input.tablet.active_area_position = "{0,0}"; # Top-left position of the usable tablet area, measured in millimeters. Default: {0,0}.
+          input.tablet.active_area_size = "{0,0}"; # Width and height of the usable tablet area, in millimeters. Default: {0,0}.
+          input.tablet.region_position = "{0,0}"; # Top-left screen position to which the tablet is mapped. Default: {0,0}.
+          input.tablet.region_size = "{0,0}"; # Width and height of the screen region controlled by the tablet; zero means unset. Default: {0,0}. Physical region of the screen mapped to tablet input.
 
           # --- INPUT.TABLETTOOL ---
           # input.tablettool.eraser_button_override = 0; # Override the pen eraser key/button identifier. Default: 0.
@@ -351,7 +362,7 @@
 
 
           # --- GESTURES ---
-          # gestures.close_max_timeout = 1000; # Configure close max timeout behavior in gestures. Default: 1000.
+          # gestures.close_max_timeout = 1000; # Maximum time in milliseconds for a gesture that closes a window. Default: 1000.
           # gestures.workspace_swipe_cancel_ratio = 0.5; # How far a swipe must travel to commit a switch. Default: 0.5.
           # gestures.workspace_swipe_create_new = true; # Create a new workspace when swiping beyond the last. Default: true.
           # gestures.workspace_swipe_direction_lock = true; # Lock swipe to its initial horizontal/vertical direction. Default: true.
@@ -373,58 +384,59 @@
           group.focus_removed_window = true; # Focus the window newly removed from a group. Default: true.
           group.group_on_movetoworkspace = false; # Auto-merge moved windows into groups on destination. Default: false.
           group.insert_after_current = true; # Insert new group windows after active member. Default: true.
-          group.merge_floated_into_tiled_on_groupbar = false; # Configure merge floated into tiled on groupbar behavior in group. Default: false.
+          group.merge_floated_into_tiled_on_groupbar = false; # Merge a floating window into a tiled group when dropped on its tab bar. Default: false.
           group.merge_groups_on_drag = true; # Permit dragging entire groups into other groups. Default: true.
-          group.merge_groups_on_groupbar = true; # Configure merge groups on groupbar behavior in group. Default: true.
-          group.drag_into_group = 1; # Default. Merge windows dragged into unlocked groups.
-                                # 0; # Do not merge windows by dragging into a group.
-                                # 2; # Merge only when the window is dropped onto a group bar.
+          group.merge_groups_on_groupbar = true; # Allow groups to merge when one is dropped onto another group’s tab bar. Default: true.
+          group.drag_into_group = 1; # Choose when dragging a window into a group merges it with that group.
+                                  # 0; # Do not merge windows by dragging into a group.
+                                  # 1; # Default. Merge windows dragged into unlocked groups.
+                                  # 2; # Merge only when the window is dropped onto a group bar.
 
 
           # --- GROUP.COL ---
-          group.col.border_active = "0x66ffff00"; # Control the border active appearance for group / col. Default: 0x66ffff00.
-          group.col.border_inactive = "0x66777700"; # Control the border inactive appearance for group / col. Default: 0x66777700.
-          group.col.border_locked_active = "0x66ff5500"; # Control the border locked active appearance for group / col. Default: 0x66ff5500.
-          group.col.border_locked_inactive = "0x66775500"; # Control the border locked inactive appearance for group / col. Default: 0x66775500.
+          group.col.border_active = "0x66ffff00"; # Border color for the focused window in an unlocked group. Default: 0x66ffff00.
+          group.col.border_inactive = "0x66777700"; # Border color for unfocused windows in unlocked groups. Default: 0x66777700.
+          group.col.border_locked_active = "0x66ff5500"; # Border color for the focused window in a locked group. Default: 0x66ff5500.
+          group.col.border_locked_inactive = "0x66775500"; # Border color for unfocused windows in locked groups. Default: 0x66775500.
 
           # --- GROUP.GROUPBAR ---
           group.groupbar.enabled = true; # Display group tab indicators on grouped windows. Default: true.
-          group.groupbar.blur = false; # Configure blur behavior in group / groupbar. Default: false.
+          group.groupbar.blur = false; # Blur the backgrounds of group tabs and their indicators. Default: false.
           group.groupbar.disable_when_only = false; # Hide a group bar if only one window remains. Default: false.
-          # group.groupbar.font_family = <omit>; # Default: (omitted / unset). Configure font family behavior in group / groupbar.
+          # group.groupbar.font_family = <omit>; # Optional font for group titles; otherwise use misc.font_family.
           group.groupbar.font_size = 8; # Size of group window title text. Default: 8.
-          group.groupbar.font_weight_active = "normal"; # Configure font weight active behavior in group / groupbar. Default: "normal".
-          group.groupbar.font_weight_inactive = "normal"; # Configure font weight inactive behavior in group / groupbar. Default: "normal".
+          group.groupbar.font_weight_active = "normal"; # Thickness of the text on the selected group tab. Default: "normal".
+          group.groupbar.font_weight_inactive = "normal"; # Thickness of the text on unselected group tabs. Default: "normal".
           group.groupbar.gaps_in = 2; # Spacing between group bar gradient blocks. Default: 2.
           group.groupbar.gaps_out = 2; # Spacing from groupbar to its host window. Default: 2.
           group.groupbar.gradients = false; # Render gradient backgrounds in group bars. Default: false.
-          group.groupbar.gradient_round_only_edges = true; # Configure gradient round only edges behavior in group / groupbar. Default: true.
-          group.groupbar.gradient_rounding = 2; # Configure gradient rounding behavior in group / groupbar. Default: 2.
-          group.groupbar.gradient_rounding_power = 2.0; # Configure gradient rounding power behavior in group / groupbar. Default: 2.0.
+          group.groupbar.gradient_round_only_edges = true; # Round only the outermost ends of the whole group-tab gradient. Default: true.
+          group.groupbar.gradient_rounding = 2; # Corner radius used for group-tab color gradients. Default: 2.
+          group.groupbar.gradient_rounding_power = 2.0; # Shape of rounded gradient corners; 2 is roughly circular. Default: 2.0.
           group.groupbar.height = 14; # Height of each groupbar area. Default: 14.
-          group.groupbar.indicator_gap = 0; # Configure indicator gap behavior in group / groupbar. Default: 0.
+          group.groupbar.indicator_gap = 0; # Vertical gap between a group tab’s title and selection indicator. Default: 0.
           group.groupbar.indicator_height = 3; # Thickness of group tab active-state indicator. Default: 3.
-          group.groupbar.keep_upper_gap = true; # Configure keep upper gap behavior in group / groupbar. Default: true.
+          group.groupbar.keep_upper_gap = true; # Keep the space above the group tab bar. Default: true.
           group.groupbar.middle_click_close = true; # Middle clicking group tabs closes that member. Default: true.
-          group.groupbar.priority = 3; # Configure priority behavior in group / groupbar. Default: 3.
+          group.groupbar.priority = 3; # Set how the group tab bar is layered relative to other window decorations. Default: 3.
           group.groupbar.render_titles = true; # Draw window names inside group bars. Default: true.
-          group.groupbar.round_only_edges = true; # Configure round only edges behavior in group / groupbar. Default: true.
+          group.groupbar.round_only_edges = true; # Round only the outer ends of the combined group-tab indicator. Default: true.
           group.groupbar.rounding = 1; # Corner radius of the group tab indicator. Default: 1.
-          group.groupbar.rounding_power = 2.0; # Configure rounding power behavior in group / groupbar. Default: 2.0.
+          group.groupbar.rounding_power = 2.0; # Shape of rounded group-tab corners; 2 is roughly circular. Default: 2.0.
           group.groupbar.scrolling = true; # Switch grouped windows with the mouse wheel. Default: true.
           group.groupbar.stacked = false; # Show the groupbar vertically rather than horizontally. Default: false.
           group.groupbar.text_color = "0xffffffff"; # Color of group tab titles. Default: 0xffffffff.
-          # group.groupbar.text_color_inactive = <omit>; # Default: (omitted / unset). Configure text color inactive behavior in group / groupbar.
-          # group.groupbar.text_color_locked_active = <omit>; # Default: (omitted / unset). Configure text color locked active behavior in group / groupbar.
-          # group.groupbar.text_color_locked_inactive = <omit>; # Default: (omitted / unset). Configure text color locked inactive behavior in group / groupbar.
-          group.groupbar.text_offset = 0; # Configure text offset behavior in group / groupbar. Default: 0.
-          group.groupbar.text_padding = 0; # Configure text padding behavior in group / groupbar. Default: 0.
+          # group.groupbar.text_color_inactive = <omit>; # Optional text color for unselected group tabs.
+          # group.groupbar.text_color_locked_active = <omit>; # Optional text color for the selected tab of a locked group.
+          # group.groupbar.text_color_locked_inactive = <omit>; # Optional text color for unselected tabs of locked groups.
+          group.groupbar.text_offset = 0; # Move group-tab titles up or down by this many pixels. Default: 0.
+          group.groupbar.text_padding = 0; # Add horizontal space around group-tab titles. Default: 0.
 
           # --- GROUP.GROUPBAR.COL ---
-          group.groupbar.col.active = "0x66ffff00"; # Configure active behavior in group / groupbar / col. Default: 0x66ffff00.
-          group.groupbar.col.inactive = "0x66777700"; # Configure inactive behavior in group / groupbar / col. Default: 0x66777700.
-          group.groupbar.col.locked_active = "0x66ff5500"; # Configure locked active behavior in group / groupbar / col. Default: 0x66ff5500.
-          group.groupbar.col.locked_inactive = "0x66775500"; # Configure locked inactive behavior in group / groupbar / col. Default: 0x66775500.
+          group.groupbar.col.active = "0x66ffff00"; # Color of the indicator for the selected tab in an unlocked group. Default: 0x66ffff00.
+          group.groupbar.col.inactive = "0x66777700"; # Color of indicators for other tabs in an unlocked group. Default: 0x66777700.
+          group.groupbar.col.locked_active = "0x66ff5500"; # Color of the selected-tab indicator in a locked group. Default: 0x66ff5500.
+          group.groupbar.col.locked_inactive = "0x66775500"; # Color of other tab indicators in a locked group. Default: 0x66775500.
 
           # --- MISC ---
           misc.allow_session_lock_restore = false; # Permit restarting a crashed session locker. Default: false.
@@ -436,7 +448,7 @@
           misc.bell_sound = "default"; # Sound file or special value for the system bell. Default: "default".
           misc.close_special_on_empty = true; # Hide special workspaces when their final window closes. Default: true.
           misc.disable_autoreload = false; # Require an explicit reload after config edits. Default: false.
-          misc.disable_hyprland_guiutils_check = false; # Control when to disable hyprland guiutils check in misc. Default: false.
+          misc.disable_hyprland_guiutils_check = false; # Hide the warning shown when hyprland-guiutils is missing. Default: false.
           misc.disable_hyprland_logo = true; # Hide Hyprland background branding. Default: false.
           misc.disable_scale_notification = false; # Suppress alerts when a display scale is unsuitable. Default: false.
           misc.disable_splash_rendering = true; # Hide background splash text. Default: false.
@@ -444,59 +456,67 @@
           misc.disable_xdg_env_checks = false; # Suppress XDG environment validation warnings. Default: false.
           misc.enable_anr_dialog = true; # Show an application-not-responding dialog. Default: true.
           misc.enable_swallow = false; # Replace a parent terminal with the launched child window. Default: false.
-          misc.exit_window_retains_fullscreen = 0; # Default. Do not automatically fullscreen the next window.
-                                              # 1; # Give the next focused window fullscreen state.
-                                              # 2; # Preserve fullscreen only when closing a grouped window.
-                                              # 3; # Preserve fullscreen only when closing a non-grouped window.
+          misc.exit_window_retains_fullscreen = 0; # Choose whether another window becomes fullscreen after a fullscreen window closes.
+                                                # 0; # Default. Do not automatically fullscreen the next window.
+                                                # 1; # Give the next focused window fullscreen state.
+                                                # 2; # Preserve fullscreen only when closing a grouped window.
+                                                # 3; # Preserve fullscreen only when closing a non-grouped window.
 
-          misc.float_force_onscreen = 2; # Keep the whole window inside monitor bounds.
-                                    # 0; # Default. No position constraint.
-                                    # 1; # Keep at least part of the window on a monitor.
+          misc.float_force_onscreen = 2; # Choose how existing floating windows are kept within monitor boundaries.
+                                      # 0; # Default. No position constraint.
+                                      # 1; # Keep at least part of the window on a monitor.
+                                      # 2; # Keep the whole window inside monitor bounds.
 
-          misc.new_float_force_onscreen = 2; # Default. Keep the whole window inside monitor bounds.
-                                        # 0; # No position constraint.
-                                        # 1; # Keep at least part of the window on a monitor.
+          misc.new_float_force_onscreen = 2; # Choose how newly opened floating windows are kept on-screen.
+                                          # 0; # No position constraint.
+                                          # 1; # Keep at least part of the window on a monitor.
+                                          # 2; # Default. Keep the whole window inside monitor bounds.
 
           misc.focus_on_activate = false; # Focus apps that request activation. Default: false.
           misc.font_family = "Sans"; # Font used for compositor-generated text. Default: "Sans".
-          misc.force_default_wallpaper = -1; # Default. Choose bundled background style at random.
-                                        # 0; # Disable the illustrated/anime background.
-                                        # 1; # Disable the illustrated/anime background (legacy alternate mode).
-                                        # 2; # Enable the illustrated/anime background.
+          misc.force_default_wallpaper = -1; # Choose whether Hyprland shows its built-in illustrated background.
+                                         # -1; # Default. Choose bundled background style at random.
+                                         # 0; # Disable the illustrated/anime background.
+                                         # 1; # Disable the illustrated/anime background (legacy alternate mode).
+                                         # 2; # Enable the illustrated/anime background.
 
           misc.initial_workspace_token_timeout = 10; # Seconds to preserve launch-workspace tracking tokens. Default: 10.
 
-          misc.initial_workspace_tracking = 0; # Do not track the workspace on which an app was launched.
-                                          # 1; # Default. Track the originally invoked workspace for one window.
-                                          # 2; # Keep tracking that workspace for descendant processes.
+          misc.initial_workspace_tracking = 0; # Choose whether launched apps open on the workspace they were started from.
+                                            # 0; # Do not track the workspace on which an app was launched.
+                                            # 1; # Default. Track the originally invoked workspace for one window.
+                                            # 2; # Keep tracking that workspace for descendant processes.
 
           misc.key_press_enables_dpms = true; # Key press turns monitors back on. Default: false.
           misc.lockdead_screen_delay = 500; # Delay before failed lockscreen fallback appears. Default: 1000.
           misc.middle_click_paste = false; # Allow X11-style primary-selection middle-click paste. Default: true.
-          misc.mouse_move_enables_dpms = false; # Configure mouse move enables dpms behavior in misc. Default: false.
+          misc.mouse_move_enables_dpms = false; # Wake a display that is in power-saving mode when the mouse moves. Default: false.
           misc.mouse_move_focuses_monitor = true; # Mouse entering a monitor focuses it. Default: true.
-          misc.name_vk_after_proc = true; # Configure virtual keyboard name after proc behavior in misc. Default: true.
-          misc.on_focus_under_fullscreen = 2; # Default. Leave fullscreen/maximized mode to focus the other window.
-                                          # 0; # Keep focus on the existing fullscreen/maximized window.
-                                          # 1; # Allow the requesting window to take over focus.
+          misc.name_vk_after_proc = true; # Name virtual keyboards after their creator app, such as fcitx5. Default: true.
+          misc.on_focus_under_fullscreen = 2; # Choose what happens when another window asks for focus over fullscreen content.
+                                           # 0; # Keep focus on the existing fullscreen/maximized window.
+                                           # 1; # Allow the requesting window to take over focus.
+                                           # 2; # Default. Leave fullscreen/maximized mode to focus the other window.
 
           misc.render_unfocused_fps = 30; # FPS cap for windows rendered despite being unfocused. Default: 15.
           misc.screencopy_force_8b = true; # Use 8-bit color depth for screenshot capture. Default: true.
           misc.session_lock_blur = true; # Blur graphics behind the lock screen. Default: false.
           misc.session_lock_xray = false; # Continue displaying workspaces behind lock screen. Default: false.
           misc.size_limits_tiled = false; # Apply min/max app sizing constraints to tiled windows. Default: false.
-          misc.vrr = 0; # Default. Keep VRR disabled.
-                    # 1; # Keep VRR enabled whenever supported.
-                    # 2; # Enable VRR only while a window is fullscreen.
-                    # 3; # Enable VRR for fullscreen game/video content types.
+          misc.vrr = 0; # Choose when monitors use variable refresh rate (Adaptive Sync).
+                     # 0; # Default. Keep VRR disabled.
+                     # 1; # Keep VRR enabled whenever supported.
+                     # 2; # Enable VRR only while a window is fullscreen.
+                     # 3; # Enable VRR for fullscreen game/video content types.
 
           # --- BINDS ---
           binds.allow_workspace_cycles = false; # Allow cyclic navigation through workspace history. Default: false.
           binds.disable_keybind_grabbing = false; # Ignore apps asking to intercept global shortcuts. Default: false.
           binds.drag_threshold = 0; # Pointer movement required to start dragging a window. Default: 0.
           binds.drag_center_window = true; # Center floating window beneath cursor when dragged. Default: true.
-          binds.focus_preferred_method = 0; # Default. Favor the most recently active matching window.
-                                        # 1; # Favor windows that share longer adjacent borders.
+          binds.focus_preferred_method = 0; # Choose how Hyprland selects a window when moving focus by direction.
+                                         # 0; # Default. Favor the most recently active matching window.
+                                         # 1; # Favor windows that share longer adjacent borders.
 
           binds.hide_special_on_workspace_change = false; # Hide special workspace when normal workspace changes. Default: false.
           binds.ignore_group_lock = false; # Allow dispatchers to disregard locked groups. Default: false.
@@ -505,134 +525,153 @@
           binds.pass_mouse_when_bound = false; # Pass pointer events through even with mouse bindings. Default: false.
           binds.scroll_event_delay = 300; # Minimum delay between wheel-triggered keybindings. Default: 300.
           binds.window_direction_monitor_fallback = true; # Permit directional focus/movement across monitor edges. Default: true.
-          binds.workspace_back_and_forth = 0; # Default. Do nothing when focusing the active workspace again.
-                                          # 1; # Jump back to the previous workspace globally.
-                                          # 2; # Jump back to the previous workspace on the current monitor.
+          binds.workspace_back_and_forth = 0; # Choose whether selecting the current workspace returns to the previous one.
+                                           # 0; # Default. Do nothing when focusing the active workspace again.
+                                           # 1; # Jump back to the previous workspace globally.
+                                           # 2; # Jump back to the previous workspace on the current monitor.
 
-          binds.workspace_center_on = 1; # Default. Center near the workspace's last active window.
-                                    # 0; # Center the pointer on the workspace/monitor.
+          binds.workspace_center_on = 1; # Choose where to place the cursor after switching workspaces.
+                                      # 0; # Center the pointer on the workspace/monitor.
+                                      # 1; # Default. Center near the workspace's last active window.
 
 
           # --- XWAYLAND ---
           xwayland.enabled = true; # Enable the XWayland compatibility server for X11 apps. Default: true.
-          xwayland.create_abstract_socket = false; # Configure create abstract socket behavior in xwayland. Default: false.
+          xwayland.create_abstract_socket = false; # Create an additional Linux abstract socket for X11 app connections. Default: false.
           xwayland.force_zero_scaling = false; # Force XWayland windows to render at unscaled resolution. Default: false.
-          xwayland.use_nearest_neighbor = true; # Configure use nearest neighbor behavior in xwayland. Default: true.
+          xwayland.use_nearest_neighbor = true; # Scale X11 app images with sharp pixels instead of smoothing them. Default: true.
 
           # --- OPENGL ---
-          opengl.nvidia_anti_flicker = false; # Configure nvidia anti flicker behavior in opengl. Default: true.
+          opengl.nvidia_anti_flicker = false; # Reduce NVIDIA display flicker, potentially at the cost of dropped frames; ignored on AMD. Default: true.
 
           # --- RENDER ---
           render.async_commit = true; # Send GPU display commits asynchronously. Default: false.
-          render.cm_auto_hdr = 1; # Default. Switch into the hdr display mode.
-                              # 0; # Disable automatic HDR switching.
-                              # 2; # Switch into the hdredid display mode.
+          render.cm_auto_hdr = 1; # Choose whether fullscreen HDR content switches the monitor into HDR mode.
+                               # 0; # Disable automatic HDR switching.
+                               # 1; # Default. Automatically switch to the HDR mode for eligible fullscreen content.
+                               # 2; # Switch into the hdredid display mode.
 
           render.cm_enabled = false; # Enable color-management pipeline. Default: true.
-          render.cm_sdr_eotf = "default"; # Default. Use the standard sRGB behavior.
-                              # "gamma22"; # Treat unspecified SDR content as Gamma 2.2.
-                              # "gamma22force"; # Treat unspecified and sRGB content as Gamma 2.2.
-                              # "srgb"; # Treat unspecified SDR content explicitly as sRGB.
+          render.cm_sdr_eotf = "default"; # Choose how the brightness of standard-range (SDR) content is interpreted.
+                               # "default"; # Default. Use the standard sRGB behavior.
+                               # "gamma22"; # Treat unspecified SDR content as Gamma 2.2.
+                               # "gamma22force"; # Treat unspecified and sRGB content as Gamma 2.2.
+                               # "srgb"; # Treat unspecified SDR content explicitly as sRGB.
           
-          render.ctm_animation = 2; # Default. Automatically disable fades on NVIDIA.
-                                # 0; # Disable CTM fade transitions.
-                                # 1; # Enable CTM fade transitions.
+          render.ctm_animation = 2; # Choose whether color-temperature changes (e.g. hyprsunset) fade smoothly.
+                                 # 0; # Disable CTM fade transitions.
+                                 # 1; # Enable CTM fade transitions.
+                                 # 2; # Default. Automatically disable fades on NVIDIA.
 
           render.commit_timing_enabled = true; # Enable precise display-commit timing protocol. Default: true.
-          render.direct_scanout = 1; # Enable direct scanout whenever eligible.
-                                # 0; # Default. Disable direct scanout.
-                                # 2; # Automatic: prioritize windows marked as games.
+          render.direct_scanout = 1; # Choose when fullscreen windows can bypass normal compositor rendering.
+                                  # 0; # Default. Disable direct scanout.
+                                  # 1; # Enable direct scanout for eligible fullscreen content.
+                                  # 2; # Automatic: prioritize windows marked as games.
 
-          render.expand_undersized_textures = true; # Configure expand undersized textures behavior in render. Default: true.
-          render.fp16_sdr_tf = 0; # Default. Use the display/monitor transfer function.
-                              # 1; # Use linear-light encoding.
+          render.expand_undersized_textures = true; # Fill missing texture edges by extending edge pixels instead of stretching the image. Default: true.
+          render.fp16_sdr_tf = 0; # Choose how brightness is encoded in high-precision buffers for SDR content.
+                               # 0; # Default. Use the display/monitor transfer function.
+                               # 1; # Use linear-light encoding.
 
           render.icc_vcgt_enabled = true; # Apply ICC calibration color ramps. Default: true.
-          render.keep_unmodified_copy = 2; # Default. Keep a copy automatically when needed for HDR/SDR.
-                                      # 0; # Do not retain a separate unmodified frame.
-                                      # 1; # Always keep an unmodified copy.
+          render.keep_unmodified_copy = 2; # Choose when to keep an unaltered SDR image for screen sharing.
+                                        # 0; # Do not retain a separate unmodified frame.
+                                        # 1; # Always keep an unmodified copy.
+                                        # 2; # Default. Keep a copy automatically when needed for HDR/SDR.
 
           render.new_render_scheduling = false; # Use adaptive/triple-buffer rendering when necessary. Default: false.
-          render.not_shown_fifo_lock = 0; # Default. Apply FIFO locking to all relevant surfaces.
-                                      # 1; # Ignore surfaces explicitly marked render-unfocused.
-                                      # 2; # Skip FIFO locking for surfaces that are not shown.
+          render.not_shown_fifo_lock = 0; # Choose whether hidden windows remain subject to FIFO frame synchronization.
+                                       # 0; # Default. Apply FIFO locking to all relevant surfaces.
+                                       # 1; # Ignore surfaces explicitly marked render-unfocused.
+                                       # 2; # Skip FIFO locking for surfaces that are not shown.
 
-          render.non_shader_cm = 2; # Default. Use only for direct scanout and passthrough.
-                                # 0; # Disable non-shader color management.
-                                # 1; # Enable it whenever technically possible.
-                                # 3; # Disable and disregard color-management issues.
+          render.non_shader_cm = 2; # Choose when color adjustments can happen without a GPU shader.
+                                 # 0; # Disable non-shader color management.
+                                 # 1; # Enable it whenever technically possible.
+                                 # 2; # Default. Use only for direct scanout and passthrough.
+                                 # 3; # Disable and disregard color-management issues.
 
-          render.non_shader_cm_interop = 2; # Default. Disable them only for fullscreen photo/video/game content.
-                                        # 0; # Disable external transforms during fullscreen.
-                                        # 1; # Allow external transforms during fullscreen.
+          render.non_shader_cm_interop = 2; # Choose whether external color filters apply to fullscreen content.
+                                         # 0; # Disable external transforms during fullscreen.
+                                         # 1; # Allow external transforms during fullscreen.
+                                         # 2; # Default. Disable them only for fullscreen photo/video/game content.
 
-          render.send_content_type = true; # Configure send content type behavior in render. Default: true.
-          render.use_fp16 = 2; # Default. Use FP16 buffers in HDR mode.
-                          # 0; # Do not use FP16 buffers.
-                          # 1; # Use FP16 buffers for all rendering.
+          render.send_content_type = true; # Tell compatible monitors whether content is video, games, or desktop so they may switch picture modes. Default: true.
+          render.use_fp16 = 2; # Choose when Hyprland uses high-precision FP16 color buffers.
+                            # 0; # Do not use FP16 buffers.
+                            # 1; # Use FP16 buffers for all rendering.
+                            # 2; # Default. Use FP16 buffers in HDR mode.
 
           render.use_shader_blur_blend = false; # Use experimental shader-based blur mixing. Default: false.
-          render.xp_mode = false; # Skips bottom layer rendering. Default: false.
+          render.xp_mode = false; # Skip normal wallpaper/back-buffer and bottom-layer rendering while enabled. Default: false.
 
           # --- CURSOR ---
           cursor.enable_hyprcursor = true; # Load high-quality Hyprcursor cursor themes. Default: true.
           cursor.hide_on_key_press = false; # Hide pointer while typing until moved. Default: false.
-          cursor.hide_on_tablet = false; # Control when to hide on tablet in cursor. Default: false.
+          cursor.hide_on_tablet = false; # Hide the pointer after tablet input until the mouse is used again. Default: false.
           cursor.hide_on_touch = true; # Hide pointer after touch input. Default: true.
           cursor.hotspot_padding = 0; # Space between screen edge and pointer hotspot. Default: 0.
           cursor.inactive_timeout = 0; # Seconds before an idle mouse pointer is hidden; 0 means never. Default: 0.
-          cursor.min_refresh_rate = 24; # Configure min refresh rate behavior in cursor. Default: 24.
-          cursor.invisible = false; # Configure invisible behavior in cursor. Default: false.
-          cursor.no_break_fs_vrr = 2; # Default. Use that behavior automatically for games.
-                                  # 0; # Request normal frames when the cursor moves.
-                                  # 1; # Avoid cursor-triggered frames during fullscreen VRR.
+          cursor.min_refresh_rate = 24; # Minimum refresh rate for cursor motion when fullscreen VRR frame updates are suppressed. Default: 24.
+          cursor.invisible = false; # Do not draw any visible mouse cursor. Default: false.
+          cursor.no_break_fs_vrr = 2; # Choose when cursor movement avoids triggering new frames during fullscreen VRR.
+                                   # 0; # Request normal frames when the cursor moves.
+                                   # 1; # Avoid cursor-triggered frames during fullscreen VRR.
+                                   # 2; # Default. Use that behavior automatically for games.
 
-          cursor.no_hardware_cursors = 2; # Default. Disable hardware cursors automatically when tearig.
-                                      # 0; # Prefer hardware cursors when available.
-                                      # 1; # Disable hardware cursors; composite the pointer instead.
+          cursor.no_hardware_cursors = 2; # Choose whether the display hardware or compositor draws the mouse pointer.
+                                       # 0; # Prefer hardware cursors when available.
+                                       # 1; # Disable hardware cursors; composite the pointer instead.
+                                       # 2; # Default. Disable hardware cursors automatically during tearing.
 
           cursor.no_warps = false; # Prevent automatic mouse-pointer relocation. Default: false.
-          cursor.persistent_warps = false; # Configure persistent warps behavior in cursor. Default: false.
+          cursor.persistent_warps = false; # Return the pointer to its previous spot in a window when refocusing it. Default: false.
           cursor.sync_gsettings_theme = true; # Synchronize cursor theme with desktop GSettings. Default: true.
-          cursor.use_cpu_buffer = 2; # Default. Enable them automatically for NVIDIA.
-                                # 0; # Disable CPU-backed cursor buffers.
-                                # 1; # Always use CPU-backed cursor buffers.
+          cursor.use_cpu_buffer = 2; # Choose when hardware cursors use buffers allocated in CPU-backed memory.
+                                  # 0; # Disable CPU-backed cursor buffers.
+                                  # 1; # Always use CPU-backed cursor buffers.
+                                  # 2; # Default. Enable them automatically for NVIDIA.
 
-          cursor.warp_back_after_non_mouse_input = false; # Configure warp back after non mouse input behavior in cursor. Default: false.
-          cursor.warp_on_change_workspace = 0; # Default. Do not warp the pointer.
+          cursor.warp_back_after_non_mouse_input = false; # Restore the previous mouse position after another input device moved the pointer. Default: false.
+          cursor.warp_on_change_workspace = 0; # Choose whether the cursor moves to a focused window after workspace changes.
+                                            # 0; # Default. Do not warp the pointer.
+                                            # 1; # Warp the pointer to the focused window.
+                                            # 2; # Force warping even when cursor.no_warps is enabled.
+
+          cursor.warp_on_monitor_change = 1; # Choose where the cursor moves when a keybind focuses another monitor.
+                                          # -1; # Default. Inherit cursor.warp_on_change_workspace.
+                                          # 0; # Never warp on monitor change.
+                                          # 1; # Move the cursor to the focused window on the newly focused monitor.
+                                          # 2; # Force warping despite cursor.no_warps.
+
+          cursor.warp_on_toggle_special = 0; # Choose whether the cursor jumps to a focused window when toggling a scratchpad.
+                                          # 0; # Default. Do not warp the pointer.
                                           # 1; # Warp the pointer to the focused window.
                                           # 2; # Force warping even when cursor.no_warps is enabled.
 
-          cursor.warp_on_monitor_change = 1; # Warp to the focused window on the new monitor.
-                                        # -1; # Default. Inherit cursor.warp_on_change_workspace.
-                                        # 0; # Never warp on monitor change.
-                                        # 2; # Force warping despite cursor.no_warps.
-
-          cursor.warp_on_toggle_special = 0; # Default. Do not warp the pointer.
-                                        # 1; # Warp the pointer to the focused window.
-                                        # 2; # Force warping even when cursor.no_warps is enabled.
-
           cursor.zoom_detached_camera = true; # Free camera movement while zoomed in. Default: true.
-          cursor.zoom_disable_aa = false; # Configure zoom disable aa behavior in cursor. Default: false.
+          cursor.zoom_disable_aa = false; # Show sharp, blocky pixels instead of smoothing the screen when zoomed. Default: false.
           cursor.zoom_factor = 1.0; # Magnification around cursor position. Default: 1.0.
           cursor.zoom_rigid = false; # Keep zoom centered on mouse movement. Default: false.
 
           # --- ECOSYSTEM ---
-          ecosystem.enforce_permissions = false; # Configure enforce permissions behavior in ecosystem. Default: false.
-          ecosystem.no_donation_nag = false; # Configure no donation nag behavior in ecosystem. Default: false.
-          ecosystem.no_update_news = false; # Suppress Hyprland update announcements. Default: false.
+          ecosystem.enforce_permissions = false; # Require Hyprland permission rules for sensitive features such as screen capture. Default: false.
+          ecosystem.no_donation_nag = false; # Hide Hyprland’s occasional donation reminder. Default: false.
+          ecosystem.no_update_news = false; # Hide Hyprland’s announcement popup after updates. Default: false.
 
           # --- QUIRKS ---
-          quirks.prefer_hdr = 1; # Always advertise HDR as preferred.
-                            # 0; # Default. Do not prefer HDR.
-                            # 2; # Advertise HDR as preferred only in Gamescope.
+          quirks.prefer_hdr = 1; # Choose when applications are told that HDR is the preferred display mode.
+                              # 0; # Default. Do not prefer HDR.
+                              # 1; # Always report HDR as the preferred display mode.
+                              # 2; # Advertise HDR as preferred only in Gamescope.
 
           # --- INPUT-CAPTURE ---
-          input-capture.capture_modifiers = false; # Configure capture modifiers behavior in input-capture. Default: false.
-          input-capture.enforce_barriers = true; # Configure enforce barriers behavior in input-capture. Default: true.
+          input-capture.capture_modifiers = false; # Let input-sharing apps also capture Ctrl, Shift, Alt, Super, and other modifier keys. Default: false.
+          input-capture.enforce_barriers = true; # Reject invalid pointer boundaries requested by input-sharing apps with a Wayland error. Default: true.
 
           # --- EXPERIMENTAL ---
-          experimental.wp_cm_1_2 = false; # enable experimental wayland color management v2. Default: false.
+          experimental.wp_cm_1_2 = false; # Let apps use version 2 of Wayland’s color-management protocol. Default: false.
 
         };
 
