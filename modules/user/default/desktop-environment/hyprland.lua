@@ -509,10 +509,10 @@ hl.config({
       absolute_region_position = false, -- Treat the tablet mapping region as an absolute screen position when no output is set. Default: false.
       relative_input = false, -- Move the pointer by pen movement instead of placing it at the pen position. Default: false.
       left_handed = false, -- Swap the tablet pen/tablet orientation for left-handed use. Default: false.
-      active_area_position = "{0,0}", -- Top-left position of the usable tablet area, measured in millimeters. Default: {0,0}.
-      active_area_size = "{0,0}", -- Width and height of the usable tablet area, in millimeters. Default: {0,0}.
-      region_position = "{0,0}", -- Top-left screen position to which the tablet is mapped. Default: {0,0}.
-      region_size = "{0,0}", -- Width and height of the screen region controlled by the tablet; zero means unset. Default: {0,0}. Physical region of the screen mapped to tablet input.
+      active_area_position = {0,0}, -- Top-left position of the usable tablet area, measured in millimeters. Default: {0,0}.
+      active_area_size = {0,0}, -- Width and height of the usable tablet area, in millimeters. Default: {0,0}.
+      region_position = {0,0}, -- Top-left screen position to which the tablet is mapped. Default: {0,0}.
+      -- region_size = {0,0}, -- Width and height of the screen region controlled by the tablet; zero means unset. Default: {0,0}. Physical region of the screen mapped to tablet input.
 
     },
   },
@@ -914,15 +914,6 @@ hl.config({
     -- prefer_hdr = 0, -- Default. Do not prefer HDR.
     -- prefer_hdr = 1, -- Always report HDR as the preferred display mode.
     -- prefer_hdr = 2, -- Advertise HDR as preferred only in Gamescope.
-
-  },
-})
-
--- --- INPUT-CAPTURE ---
-hl.config({
-  ["input-capture"] = {
-    capture_modifiers = false, -- Let input-sharing apps also capture Ctrl, Shift, Alt, Super, and other modifier keys. Default: false.
-    enforce_barriers = true, -- Reject invalid pointer boundaries requested by input-sharing apps with a Wayland error. Default: true.
 
   },
 })
