@@ -128,7 +128,7 @@ hl.config({
 hl.config({
   general = {
     col = {
-      active_border = "0xffffffff", -- Color or gradient of the currently focused window border. Default: 0xffffffff.
+      active_border = "0xff666666", -- Color or gradient of the currently focused window border. Default: 0xffffffff.
       inactive_border = "0xff444444", -- Color or gradient of other window borders. Default: 0xff444444.
       nogroup_border = "0xffffaaff", -- Border for windows that cannot join a group. Default: 0xffffaaff.
       nogroup_border_active = "0xffff00ff", -- Active border for windows that cannot join a group. Default: 0xffff00ff.
@@ -154,7 +154,8 @@ hl.config({
 -- --- DECORATION ---
 hl.config({
   decoration = {
-    active_opacity = 1.0, -- Opacity multiplier for focused windows. Default: 1.0.
+    active_opacity = 0.95, -- Opacity multiplier for focused windows. Default: 1.0.
+    inactive_opacity = 0.9, -- Opacity multiplier for unfocused windows. Default: 1.0.
     border_part_of_window = true, -- Count border pixels as part of the window geometry. Default: true.
     dim_around = 0.4, -- Darkening when a window requests dim-around. Default: 0.4.
     dim_inactive = false, -- Darken unfocused windows. Default: false.
@@ -162,9 +163,8 @@ hl.config({
     dim_special = 0.2, -- Dimming amount behind special workspaces. Default: 0.2.
     dim_strength = 0.5, -- Darkening intensity for inactive windows. Default: 0.5.
     fullscreen_opacity = 1.0, -- Opacity multiplier for fullscreen windows. Default: 1.0.
-    inactive_opacity = 1.0, -- Opacity multiplier for unfocused windows. Default: 1.0.
-    rounding = 0, -- Corner rounding radius in layout pixels. Default: 0.
-    rounding_power = 2.0, -- Shape of rounded corners (2 = circular). Default: 2.0.
+    rounding = 8, -- Corner rounding radius in layout pixels. Default: 0.
+    rounding_power = 2, -- Shape of rounded corners (2 = circular). Default: 2.0.
 
   },
 })
@@ -189,11 +189,11 @@ hl.config({
 hl.config({
   decoration = {
     glow = {
-      enabled = false, -- Enable a glow drawn inside windows. Default: false.
-      color = "0xee1a1a1a", -- Color of the inner glow on focused windows. Default: 0xee1a1a1a.
-      color_inactive = "0xee1a1a1a", -- Inner-glow color for unfocused windows; normally inherits the active glow color.
+      enabled = true, -- Enable a glow drawn inside windows. Default: false.
+      color = "0xff000000", -- Color of the inner glow on focused windows. Default: 0xee1a1a1a.
+      color_inactive = "0xdd000000", -- Inner-glow color for unfocused windows; normally inherits the active glow color.
       range = 10, -- Width/radius of the inner glow effect. Default: 10.
-      render_power = 3, -- Falloff curve of the inner glow effect. Default: 3.
+      render_power = 4, -- Falloff curve of the inner glow effect. Default: 3.
 
     },
   },
@@ -230,7 +230,7 @@ hl.config({
       vibrancy = 0.1696, -- Increase saturation of blurred content. Default: 0.1696.
       vibrancy_darkness = 0.0, -- Vibrancy intensity in the dark parts of the scene. Default: 0.0.
       xray = false, -- Exclude tiled windows from floating-window blur sampling. Default: false.
-      variant = "kawase", -- Choose the visual effect used when blurring transparent backgrounds.
+      variant = "acrylic", -- Choose the visual effect used when blurring transparent backgrounds.
       -- variant = "kawase", -- Default. Conventional, relatively inexpensive background blur.
       -- variant = "acrylic", -- Refracted liquid-glass-like acrylic blur.
       -- variant = "aurora", -- Adds aurora-like colored light streaks.
@@ -252,11 +252,11 @@ hl.config({
   decoration = {
     blur = {
       acrylic = {
-        -- aberration = 0.025, -- Color fringe distortion for acrylic-style blur. Default: 0.025.
-        -- bulb = 48.0, -- Width of the acrylic lens edge. Default: 48.0.
-        -- clarity = 0.82, -- How clearly the background shows through acrylic. Default: 0.82.
-        -- refraction = 24.0, -- Strength of the acrylic light distortion. Default: 24.0.
-        -- tint = 0x14EEF5FF, -- Tint color applied by acrylic blur. Default: 0x14EEF5FF.
+        aberration = 0.1, -- Color fringe distortion for acrylic-style blur. Default: 0.025.
+        bulb = 20.0, -- Width of the acrylic lens edge. Default: 48.0.
+        clarity = 1.0, -- How clearly the background shows through acrylic. Default: 0.82.
+        refraction = 0.8, -- Strength of the acrylic light distortion. Default: 24.0.
+        tint = 0x55000000, -- Tint color applied by acrylic blur. Default: 0x14EEF5FF.
 
       },
     },
@@ -268,10 +268,10 @@ hl.config({
   decoration = {
     blur = {
       aurora = {
-        -- color1 = 0x29F0A0FF, -- First tint color used in aurora blur. Default: 0x29F0A0FF.
-        -- color2 = 0x7A4DFFFF, -- Second tint color used in aurora blur. Default: 0x7A4DFFFF.
-        -- intensity = 0.35, -- Opacity/intensity of aurora color curtains. Default: 0.35.
-        -- speed = 1.0, -- Animation speed of aurora color curtains. Default: 1.0.
+        color1 = 0xaaF0A0FF, -- First tint color used in aurora blur. Default: 0x29F0A0FF.
+        color2 = 0x664DFFFF, -- Second tint color used in aurora blur. Default: 0x7A4DFFFF.
+        intensity = 0.5, -- Opacity/intensity of aurora color curtains. Default: 0.35.
+        speed = 1.0, -- Animation speed of aurora color curtains. Default: 1.0.
 
       },
     },
@@ -283,7 +283,7 @@ hl.config({
   decoration = {
     blur = {
       drops = {
-        -- speed = 3.0, -- Animation speed of droplet blur. Default: 3.0.
+        speed = 0.5, -- Animation speed of droplet blur. Default: 3.0.
 
       },
     },
@@ -295,13 +295,13 @@ hl.config({
   decoration = {
     blur = {
       fluid_jar = {
-        -- color = 0xCC3399FF, -- Color of simulated fluid. Default: 0xCC3399FF.
-        -- distortion = 8.0, -- Refraction/distortion of simulated fluid. Default: 8.0.
-        -- fill_amount = 0.5, -- How full the fluid container looks. Default: 0.5.
-        -- mass = 1.4, -- Inertial mass of the simulated fluid. Default: 1.4.
-        -- precision = 2.0, -- Precision of the fluid simulation. Default: 2.0.
-        -- speed = 3.7, -- Animation speed of simulated fluid. Default: 3.7.
-        -- turbulence = 1.2, -- Amount of internal fluid turbulence. Default: 1.2.
+        color = 0xCC3399FF, -- Color of simulated fluid. Default: 0xCC3399FF.
+        distortion = 8.0, -- Refraction/distortion of simulated fluid. Default: 8.0.
+        fill_amount = 0.5, -- How full the fluid container looks. Default: 0.5.
+        mass = 1.4, -- Inertial mass of the simulated fluid. Default: 1.4.
+        precision = 2.0, -- Precision of the fluid simulation. Default: 2.0.
+        speed = 3.7, -- Animation speed of simulated fluid. Default: 3.7.
+        turbulence = 1.2, -- Amount of internal fluid turbulence. Default: 1.2.
 
       },
     },
@@ -313,9 +313,9 @@ hl.config({
   decoration = {
     blur = {
       glass = {
-        -- refraction = 20.0, -- Refractive displacement for glass-like blur. Default: 20.0.
-        -- roughness = 1.0, -- Intensity of textured glass shading. Default: 1.0.
-        -- size = 40.0, -- Size of the glass refraction pattern. Default: 40.0.
+        refraction = 20.0, -- Refractive displacement for glass-like blur. Default: 20.0.
+        roughness = 0.0, -- Intensity of textured glass shading. Default: 1.0.
+        size = 100.0, -- Size of the glass refraction pattern. Default: 40.0.
 
       },
     },
@@ -327,8 +327,8 @@ hl.config({
   decoration = {
     blur = {
       haze = {
-        -- intensity = 0.35, -- Strength of pearlescent haze shading. Default: 0.35.
-        -- iridescence = 0.7, -- Color shift in pearlescent haze. Default: 0.7.
+        intensity = 1.0, -- Strength of pearlescent haze shading. Default: 0.35.
+        iridescence = 1.0, -- Color shift in pearlescent haze. Default: 0.7.
 
       },
     },
@@ -340,8 +340,7 @@ hl.config({
   decoration = {
     blur = {
       heat_shimmer = {
-        -- speed = 1.0, -- Animation speed of heat-shimmer blur. Default: 1.0.
-
+        speed = 4.0, -- Animation speed of heat-shimmer blur. Default: 1.0.
       },
     },
   },
@@ -352,10 +351,10 @@ hl.config({
   decoration = {
     blur = {
       ripple = {
-        -- duration = 0.45, -- Lifetime of a single blur ripple. Default: 0.45.
-        -- radius = 400.0, -- Maximum radius reached by blur ripples. Default: 400.0.
-        -- strength = 30.0, -- Strength of ripple refraction. Default: 30.0.
-        -- width = 32.0, -- Thickness of the ripple wave band. Default: 32.0.
+        duration = 0.45, -- Lifetime of a single blur ripple. Default: 0.45.
+        radius = 400.0, -- Maximum radius reached by blur ripples. Default: 400.0.
+        strength = 30.0, -- Strength of ripple refraction. Default: 30.0.
+        width = 32.0, -- Thickness of the ripple wave band. Default: 32.0.
 
       },
     },
@@ -367,11 +366,11 @@ hl.config({
   decoration = {
     blur = {
       water = {
-        -- damping = 0.95, -- How fast water surface waves decay. Default: 0.95.
-        -- duration = 12.0, -- Maximum lifetime of water-wave effects. Default: 12.0.
-        -- radius = 20.0, -- Radius around input used to disturb the water surface. Default: 20.0.
-        -- speed = 0.76, -- Propagation speed of water-wave effects. Default: 0.76.
-        -- strength = 32.0, -- Strength of water wave/refraction displacement. Default: 32.0.
+        damping = 0.9, -- How fast water surface waves decay. Default: 0.95.
+        duration = 12.0, -- Maximum lifetime of water-wave effects. Default: 12.0.
+        radius = 20.0, -- Radius around input used to disturb the water surface. Default: 20.0.
+        speed = 0.76, -- Propagation speed of water-wave effects. Default: 0.76.
+        strength = 32.0, -- Strength of water wave/refraction displacement. Default: 32.0.
 
       },
     },
