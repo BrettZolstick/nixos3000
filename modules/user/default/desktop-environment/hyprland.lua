@@ -4,6 +4,11 @@
 -- plugins, and the XDG desktop portal/screen-share picker outside this file.
 -- All active compositor settings and their original values have been preserved.
 
+-- --- AUTOSTART ---
+hl.on("hyprland.start", function()
+	hl.exec_cmd("noctalia")
+end)
+
 -- --- GENERAL ---
 hl.config({
   general = {
