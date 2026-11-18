@@ -9,8 +9,8 @@ hl.config({
 hl.curve("quick",{
   type = "bezier",
   points = {
-    {0.15, 0},
-    {0.1, 1},
+    {0.25, 0},
+    {0.25, 1},
   },
 })
 
