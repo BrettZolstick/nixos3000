@@ -30,7 +30,7 @@ hl.config({
 hl.config({
   general = {
     col = {
-      active_border = "0xff666666", -- Color or gradient of the currently focused window border. Default: 0xffffffff.
+      active_border = "0xff999999", -- Color or gradient of the currently focused window border. Default: 0xffffffff.
       inactive_border = "0xff444444", -- Color or gradient of other window borders. Default: 0xff444444.
       nogroup_border = "0xffffaaff", -- Border for windows that cannot join a group. Default: 0xffffaaff.
       nogroup_border_active = "0xffff00ff", -- Active border for windows that cannot join a group. Default: 0xffff00ff.
