@@ -12,7 +12,7 @@
       settings = {
         shell = "${pkgs.fish}/bin/fish";
         remember_window_size = "no";
-        confirm_os_window_cloase = 0;
+        confirm_os_window_close = 0;
       };
     };
       
