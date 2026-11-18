@@ -6,7 +6,17 @@
       enable = true;
       systemd.enable = true;
       configType = "lua";
-      extraConfig = "require('hyprland.hyprland')";
+      extraConfig = ''
+        require("hyprland.general")
+        require("hyprland.decoration")
+        require("hyprland.animations")
+        require("hyprland.input")
+        require("hyprland.group")
+        require("hyprland.misc")
+        require("hyprland.binds")
+        require("hyprland.render")
+        require("hyprland.cursor")
+      '';
     };
     
     xdg.configFile."hypr/hyprland" = lib.mkForce {
