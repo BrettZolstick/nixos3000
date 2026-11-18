@@ -65,7 +65,6 @@ hl.config({
     smart_split = false, -- Use cursor position to choose the next split direction. Default: false.
     smart_resizing = true, -- Choose resize direction based on the mouse position instead of the tiling layout. Default: true.
     permanent_direction_override = false, -- Keep a manually chosen split direction until you change or clear it. Default: false.
-    special_scale_factor = 1, -- Adjust special scale factor for dwindle. Default: 1.
     split_width_multiplier = 1.0, -- Adjust when Dwindle divides windows side-by-side versus top-and-bottom. Default: 1.0.
     use_active_for_splits = true, -- Base new splits on the focused window instead of the mouse position. Default: true.
     default_split_ratio = 1.0, -- Default split ratio; 1.0 produces equal halves. Default: 1.0.
