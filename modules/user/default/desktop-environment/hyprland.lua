@@ -464,7 +464,7 @@ hl.config({
       flip_x = false, -- Invert horizontal touchpad movement. Default: false.
       flip_y = false, -- Invert vertical touchpad movement. Default: false.
       middle_button_emulation = false, -- Treat simultaneous left+right as middle click. Default: false.
-      natural_scroll = false, -- Make touchpad content move with finger direction. Default: false.
+      natural_scroll = true, -- Make touchpad content move with finger direction. Default: false.
       scroll_factor = 1.0, -- Multiply touchpad scroll movement. Default: 1.0.
       tap_and_drag = true, -- Allow tapping and dragging items. Default: true.
       tap_button_map = "lrm", -- One-finger left; two-finger right; three-finger middle.
