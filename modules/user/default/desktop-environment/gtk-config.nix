@@ -1,6 +1,6 @@
 {config, lib, pkgs, osConfig, ...}: {
-  options.gtk.enable = lib.mkOption {default = true;};
-  config = lib.mkIf config.gtk.enable {
+  options.gtk-config.enable = lib.mkOption {default = true;};
+  config = lib.mkIf config.gtk-config.enable {
 
     assertions = [
       {

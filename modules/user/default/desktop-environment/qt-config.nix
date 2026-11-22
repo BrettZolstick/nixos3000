@@ -10,8 +10,8 @@ let
   '';
 in
 {
-  options.qt.enable = lib.mkOption {default = true;};
-  config = lib.mkIf config.qt.enable {
+  options.qt-config.enable = lib.mkOption {default = true;};
+  config = lib.mkIf config.qt-config.enable {
   
     qt = {
       enable = true;
