@@ -8,14 +8,11 @@
 
     # Enable virtual terminals on tty1-10, with getty explicity on tty10
     services.logind.settings.Login = {
-      NAutoVTs = 9; # automatically enable virtual terminals on tty1-9
+      NAutoVTs = 9; # enable autovt (will be ly) virtual terminals on tty1-9
       ReserveVT = 0;
     };
-    systemd.services."getty@tty10" = { # explicity set tty10 as getty
-      overrideStrategy = "asDropin";
-      wantedBy = ["getty.target"];
-    };
-
+    systemd.targets.getty.wants = ["getty@tty10.service"]; # start getty on tty 10
+    
     # let ly be the default on new ttys instead of getty
     systemd.services."ly@".aliases = ["autovt@.service"];
     systemd.services."getty@".aliases = lib.mkForce [];
