@@ -21,6 +21,9 @@
         font_size = 11;
         
       };
+      extraConfig = ''
+        globinclude themes/noctalia.conf    
+      '';
     };
 
     home.packages = [pkgs.nerd-fonts.victor-mono];

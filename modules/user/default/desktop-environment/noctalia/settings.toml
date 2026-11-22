@@ -182,6 +182,9 @@ mode = "light"
 pure_black_dark = true
 source = "wallpaper"
 
+    [theme.templates]
+    builtin_ids = [ "kitty" ]
+
 [wallpaper]
 directory = "/etc/nixos/nixos3000/resources/wallpapers"
 
