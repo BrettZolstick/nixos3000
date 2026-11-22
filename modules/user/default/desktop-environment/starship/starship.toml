@@ -28,17 +28,12 @@ format = "[[ $symbol $branch ](fg:base bg:subtext0)]($style)"
 
 [git_status]
 style = "bg:subtext0"
-diverged = "[[  ${ahead_count} ${behind_count}](bg:subtext0 fg:base)]($style)"
-ahead = "[[ ${count}](bg:subtext0 fg:base)]($style)"
-behind = "[[ ${count}](bg:subtext0 fg:base)]($style)"
-modified = "[[ !${count}](bg:subtext0 fg:base)]($style)"
-staged = "[[ +${count}](bg:subtext0 fg:base)]($style)"
-format = "[[($all_status$ahead_behind )](bg:subtext0 fg:base)]($style)"
-
-[nix_shell]
-symbol = " "
-style = "bg:surface2 fg:text"
-format = "[[ $symbol ($version) ](fg:text bg:surface2)]($style)"
+diverged = "[[  ${ahead_count} ${behind_count}](bg:subtext0 fg:text)]($style)"
+ahead = "[[ ${count}](bg:subtext0 fg:text)]($style)"
+behind = "[[ ${count}](bg:subtext0 fg:text)]($style)"
+modified = "[[ !${count}](bg:subtext0 fg:text)]($style)"
+staged = "[[ +${count}](bg:subtext0 fg:text)]($style)"
+format = "[[($all_status$ahead_behind )](bg:subtext0 fg:text)]($style)"
 
 [time]
 disabled = false
