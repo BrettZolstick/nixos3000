@@ -15,6 +15,10 @@
         name = "adw-gtk3-dark";
         package = pkgs.adw-gtk3;
       };
+      iconTheme = {
+        name = "Numix";
+        package = pkgs.numix-icon-theme;
+      };
       gtk4.theme = null;
     };
   };
