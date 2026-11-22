@@ -11,7 +11,7 @@ local screenshotAnnotate = "noctalia msg screenshot-region --annotate"
 
 
 -- Launch Apps.
-hl.bind("SUPER + RETURN",    hl.dsp.exec_cmd(kitty))
+hl.bind("SUPER + RETURN",    hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + SPACE",     hl.dsp.exec_cmd(appLauncher))
 hl.bind("SUPER + DELETE",    hl.dsp.exec_cmd(processViewer))
 hl.bind("SUPER + B",         hl.dsp.exec_cmd(browser))

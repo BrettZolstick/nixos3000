@@ -163,13 +163,21 @@ settings_window_translucent = true
 
     [shell.launcher]
     app_grid = true
+    categories = false
+    layout = "simple"
+    show_app_actions = true
 
     [shell.panel]
     clipboard_position = "auto"
+    launcher_placement = "attached"
     transparency_mode = "glass"
 
     [shell.screen_corners]
     size = 53
+
+    [shell.screenshot]
+    copy_on_close = true
+    save_to_file = false
 
     [shell.shadow]
     alpha = 0.53999998793005943
@@ -184,7 +192,7 @@ source = "wallpaper"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "helix", "hyprland", "kcolorscheme", "kitty" ]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "hyprland", "kcolorscheme", "kitty" ]
     community_ids = [ "yazi" ]
 
 [wallpaper]
