@@ -1,6 +1,7 @@
 -- --- AUTOSTART ---
 hl.on("hyprland.start", function()
 	hl.exec_cmd("noctalia")
+	hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 end)
 
 -- --- GENERAL ---
