@@ -33,14 +33,14 @@
         RestartSec = 0 ;
 
         # receive keyboard input
-        StandardInput = "tty2";
-        StandardOutput = "tty2";
+        StandardInput = "tty";
+        StandardOutput = "tty";
 
         # disconnect anything still attached to tty2
         TTYPath = "/dev/tty2";
         TTYReset = true;
         TTYVHangup = true;
-        TTYVTDissallocate = true;
+        TTYVTDisallocate = true;
         IgnoreSIGPIPE = false;
         SendSIGHUP = true;
         
