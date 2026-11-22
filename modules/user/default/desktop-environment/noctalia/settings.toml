@@ -176,15 +176,15 @@ settings_window_translucent = true
     direction = "down_right"
 
 [theme]
-builtin = "Noctalia"
-community_palette = "Oxocarbon"
+builtin = "Nord"
+community_palette = "Noctalia legacy"
 mode = "dark"
 pure_black_dark = true
 source = "wallpaper"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "helix", "hyprland", "kitty" ]
+    builtin_ids = [ "gtk3", "gtk4", "helix", "hyprland", "kitty" ]
     community_ids = [ "yazi" ]
 
 [wallpaper]

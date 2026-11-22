@@ -35,6 +35,7 @@ in
       };
 
       firefox.enable = true;
+      libadwaita.enable = true;
 
 
 
