@@ -199,13 +199,13 @@ wallpaper_scheme = "vibrant"
 directory = "/etc/nixos/nixos3000/resources/wallpapers"
 
     [wallpaper.default]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
 
     [wallpaper.last]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
 
 [weather]
 enabled = false
