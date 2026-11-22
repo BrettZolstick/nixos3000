@@ -16,6 +16,7 @@
         completion-trigger-len = 1;
         completion-timeout = 5;
       };
+      theme = "noctalia";
     };
     # home.sessionVariables = {
     #   EDITOR = "hx";

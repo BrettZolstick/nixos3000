@@ -36,7 +36,7 @@ hl.config({
 hl.config({
   decoration = {
     glow = {
-      enabled = true, -- Enable a glow drawn inside windows. Default: false.
+      enabled = false, -- Enable a glow drawn inside windows. Default: false.
       color = "0xff000000", -- Color of the inner glow on focused windows. Default: 0xee1a1a1a.
       color_inactive = "0xdd000000", -- Inner-glow color for unfocused windows; normally inherits the active glow color.
       range = 10, -- Width/radius of the inner glow effect. Default: 10.
@@ -77,7 +77,7 @@ hl.config({
       vibrancy = 0.1696, -- Increase saturation of blurred content. Default: 0.1696.
       vibrancy_darkness = 0.0, -- Vibrancy intensity in the dark parts of the scene. Default: 0.0.
       xray = false, -- Exclude tiled windows from floating-window blur sampling. Default: false.
-      variant = "acrylic", -- Choose the visual effect used when blurring transparent backgrounds.
+      variant = "aurora", -- Choose the visual effect used when blurring transparent backgrounds.
       -- variant = "kawase", -- Default. Conventional, relatively inexpensive background blur.
       -- variant = "acrylic", -- Refracted liquid-glass-like acrylic blur.
       -- variant = "aurora", -- Adds aurora-like colored light streaks.
@@ -118,7 +118,7 @@ hl.config({
         color1 = 0xaaF0A0FF, -- First tint color used in aurora blur. Default: 0x29F0A0FF.
         color2 = 0x664DFFFF, -- Second tint color used in aurora blur. Default: 0x7A4DFFFF.
         intensity = 0.5, -- Opacity/intensity of aurora color curtains. Default: 0.35.
-        speed = 1.0, -- Animation speed of aurora color curtains. Default: 1.0.
+        speed = 0.5, -- Animation speed of aurora color curtains. Default: 1.0.
 
       },
     },
