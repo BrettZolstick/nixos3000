@@ -35,11 +35,6 @@ modified = "[[ !${count}](bg:subtext0 fg:text)]($style)"
 staged = "[[ +${count}](bg:subtext0 fg:text)]($style)"
 format = "[[($all_status$ahead_behind )](bg:subtext0 fg:text)]($style)"
 
-[nix_shell]
-symbol = " "
-style = "bg:surface2 fg:text"
-format = "[[ $symbol ($version) ](fg:text bg:surface2)]($style)"
-
 [time]
 disabled = false
 time_format = "%r"
