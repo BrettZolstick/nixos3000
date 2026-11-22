@@ -1,6 +1,6 @@
 palette = "noctalia"
 scan_timeout = 1
-format = "[](text)[  ](bg:text fg:base)$hostname[](fg:text bg:subtext1)$directory[](fg:subtext1 bg:subtext0)$git_branch$git_status[](fg:subtext0 bg:surface2)$nodejs$rust$golang$php[](fg:surface2 bg:surface0)$time[](fg:surface0)$cmd_duration\n$character"
+format = "[](text)[  ](bg:text fg:base)$hostname[](fg:text bg:subtext1)$directory[](fg:subtext1 bg:subtext0)$git_branch$git_status[](fg:subtext0 bg:surface2)$nix_shell[](fg:surface2 bg:surface0)$time[](fg:surface0)$cmd_duration\n$character"
 
 [hostname]
 ssh_only = true
