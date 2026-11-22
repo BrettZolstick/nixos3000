@@ -166,6 +166,25 @@ function generateSshKeyPair {
     Clear-Host
 }
 
+function copyNetworkConnection {
+    Write-Host
+    Write-Host
+    Write-Host
+    Write-Host "Copying network connection from installer to disk" -ForegroundColor Cyan
+
+    $sourceDir = "/etc/NetworkManager/system-connections"
+    $targetDir = "/mnt" + $sourceDir
+
+    install --directory --mode 700 --owner=root --group=root $targetDir
+    
+    $connectionFiles = Get-ChildItem $sourceDir -Filter "*.nmconnection" -File -ErrorAction SilentlyContinue
+    foreach ($connectionFile in $connectionFiles){
+        install --mode 600 --owner=root --group=root $($connectionFile.FullName) "$targetDir/$($connectionFile.Name)"
+    }
+    
+    Clear-Host 
+}
+
 function installNixOS {
     param(
         [Boolean]$enableEncryption
@@ -213,5 +232,6 @@ $enableEncryption = askForDiskEncryption
 partitionDisk -disk $selectedDisk -enableEncryption $enableEncryption
 generateAgeIdentity
 generateSshKeyPair
+copyNetworkConnection
 installNixOS -enableEncryption $enableEncryption
 reboot

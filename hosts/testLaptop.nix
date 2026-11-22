@@ -22,7 +22,7 @@ imports = [
   ../users/gaming.nix
   ../users/cookiegroup.nix
   ../users/plexus.nix
-] ++ nixFilesToImport; # This recursively imports any nix files under ./systemOptions as well as the specified imports
+] ++ nixFilesToImport; # This recursively imports any nix files under ./system as well as the specified imports
 
 # kde.enable = true; 
 # sddm.enable = true;
