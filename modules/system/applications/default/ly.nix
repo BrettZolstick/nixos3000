@@ -6,24 +6,32 @@
       enable = true;
     };
 
-    # Enable virtual terminals on tty1-10
+    # Enable virtual terminals on tty1-10, with getty explicity on tty10
     services.logind.settings.Login = {
-      NAutoVTs = 10; # enable virtual terminals on tty1-10
-      ReserveVT = 10; # keep tty10 a normal getty login for recovery
+      NAutoVTs = 9; # automatically enable virtual terminals on tty1-9
+      ReserveVT = 0;
     };
+    systemd.services."getty@tty10" = { # explicity set tty10 as getty
+      overrideStrategy = "asDropin";
+      wantedBy = ["getty.target"];
+    };
+
+    # let ly be the default on new ttys instead of getty
+    systemd.services."ly@".aliases = ["autovt@.service"];
+    systemd.services."getty@".aliases = [];
     
     # Make ly open on tty1-9
-    systemd.services."autovt@tty2" = {
+    systemd.services."ly@" = {
 
-      description = "Ly display manager on tty2";
-
+      description = "Ly display manager on %I";
+          
       after = [ # prevents ly starting until all these are finished
         "systemd-user-sessions.service"
         "plymouth-quit-wait.service"
-        "getty@tty2.service"
+        "getty@%i.service"
       ];
 
-      conflicts = [ "getty@tty2.service" ]; # prevents getty and ly from trying to run on the same tty
+      conflicts = [ "getty@%i.service" ]; # prevents getty and ly from trying to run on the same tty
 
       restartIfChanged = false; # do not restart on rebuild switch
 
@@ -43,7 +51,7 @@
         StandardOutput = "tty";
 
         # disconnect anything still attached to tty2
-        TTYPath = "/dev/tty2";
+        TTYPath = "/dev/%I";
         TTYReset = true;
         TTYVHangup = true;
         TTYVTDisallocate = true;
