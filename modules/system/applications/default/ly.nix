@@ -18,7 +18,7 @@
 
     # let ly be the default on new ttys instead of getty
     systemd.services."ly@".aliases = ["autovt@.service"];
-    systemd.services."getty@".aliases = [];
+    systemd.services."getty@".aliases = lib.mkForce [];
     
     # Make ly open on tty1-9
     systemd.services."ly@" = {
@@ -50,7 +50,7 @@
         StandardInput = "tty";
         StandardOutput = "tty";
 
-        # disconnect anything still attached to tty2
+        # disconnect anything still attached to the tty
         TTYPath = "/dev/%I";
         TTYReset = true;
         TTYVHangup = true;
