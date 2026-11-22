@@ -1,8 +1,8 @@
 -- --- DECORATION ---
 hl.config({
   decoration = {
-    active_opacity = 0.8, -- Opacity multiplier for focused windows. Default: 1.0.
-    inactive_opacity = 0.8, -- Opacity multiplier for unfocused windows. Default: 1.0.
+    active_opacity = 0.85, -- Opacity multiplier for focused windows. Default: 1.0.
+    inactive_opacity = 0.85, -- Opacity multiplier for unfocused windows. Default: 1.0.
     border_part_of_window = true, -- Count border pixels as part of the window geometry. Default: true.
     dim_around = 0.4, -- Darkening when a window requests dim-around. Default: 0.4.
     dim_inactive = false, -- Darken unfocused windows. Default: false.

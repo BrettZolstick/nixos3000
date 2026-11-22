@@ -184,20 +184,20 @@ source = "wallpaper"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "helix", "hyprland", "kitty", "qt" ]
+    builtin_ids = [ "gtk3", "gtk4", "helix", "hyprland", "kcolorscheme", "kitty" ]
     community_ids = [ "yazi" ]
 
 [wallpaper]
 directory = "/etc/nixos/nixos3000/resources/wallpapers"
 
     [wallpaper.default]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
 
     [wallpaper.last]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
 
 [weather]
 enabled = false

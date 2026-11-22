@@ -1,7 +1,9 @@
 -- --- AUTOSTART ---
 hl.on("hyprland.start", function()
+	hl.env("QT_QPA_PLATFORMTHEME", "kde")
+	hl.env("QT_STYLE_OVERRIDE", "breeze")
+
 	hl.exec_cmd("noctalia")
-	hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 end)
 
 -- --- GENERAL ---
