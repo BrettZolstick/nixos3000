@@ -6,7 +6,13 @@
       enable = true;
     };
 
-    # make ly open on ttys 1-4
+    # Enable virtual terminals on tty1-10
+    services.logind.settings.Login = {
+      NAutoVTs = 10; # enable virtual terminals on tty1-10
+      ReserveVT = 10; # keep tty10 a normal getty login for recovery
+    };
+    
+    # Make ly open on tty1-9
     systemd.services."autovt@tty2" = {
 
       description = "Ly display manager on tty2";
@@ -44,10 +50,7 @@
         IgnoreSIGPIPE = false;
         SendSIGHUP = true;
         
-      };
-
-      
-      
+      };         
     };
     
   };
