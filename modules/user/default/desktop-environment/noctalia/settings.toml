@@ -1,0 +1,207 @@
+config_version = 20
+
+[backdrop]
+enabled = true
+
+[bar.default]
+background_opacity = 0.69999998435378075
+capsule_thickness = 0.68999998830258846
+compositor_blur = false
+end = [
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "control-center",
+    "session"
+]
+margin_ends = "10%"
+padding = 15
+radius = 15
+scale = 0.80000000447034836
+start = [ "launcher", "wallpaper", "media" ]
+thickness = 23
+widget_spacing = 10
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1", "lockscreen-login-box@FALLBACK" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@FALLBACK"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 898.0
+    output = "FALLBACK"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@FALLBACK".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@WAYLAND-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 153.5
+    cy = 157.0
+    output = "WAYLAND-1"
+    placement_height = 339.0
+    placement_width = 307.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@WAYLAND-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 640.0
+    cy = 568.33331298828125
+    output = "eDP-1"
+    placement_height = 720.0
+    placement_width = 1280.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[plugins]
+enabled = []
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    name = "official"
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    name = "community"
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/maylton/noctalia-auto-tile-plugin"
+    name = "maylton-plugins"
+
+[shell]
+card_borders = false
+font_family = "VictorMono NFM SemiBold"
+settings_window_translucent = true
+
+    [shell.animation]
+    speed = 1.7500000260770321
+
+    [shell.launcher]
+    app_grid = true
+
+    [shell.panel]
+    clipboard_position = "auto"
+    transparency_mode = "glass"
+
+    [shell.screen_corners]
+    size = 53
+
+    [shell.shadow]
+    alpha = 0.53999998793005943
+    direction = "down_right"
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Oxocarbon"
+mode = "light"
+pure_black_dark = true
+source = "wallpaper"
+
+[wallpaper]
+directory = "/etc/nixos/nixos3000/resources/wallpapers"
+
+    [wallpaper.default]
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+
+    [wallpaper.last]
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+
+[weather]
+enabled = false
+
+[widget.bluetooth]
+enabled = false
+
+[widget.brightness]
+enabled = false
+
+[widget.clipboard]
+enabled = false
