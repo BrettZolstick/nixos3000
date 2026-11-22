@@ -160,6 +160,7 @@ enabled = [ "noctalia/wallhaven" ]
 card_borders = false
 font_family = "VictorMono NFM SemiBold"
 settings_window_translucent = true
+setup_wizard_enabled = true
 
     [shell.animation]
     speed = 1.7500000260770321
