@@ -6,8 +6,12 @@
       enable = true;
       platformTheme.name = "kde";
       style.name = "breeze";
-      kde.settings.kdeglobals = {
-        Icons.Theme = config.icon-theme.name;
+      kde.settings = {
+        kdeglobals.Icons.Theme = config.icon-theme.name;
+        kcminputrc.Mouse = {
+          cursorTheme = config.cursor-theme.name;
+          cursorSize = config.cursor-theme.size;
+        };       
       };  
     };
   };
