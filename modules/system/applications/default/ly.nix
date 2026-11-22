@@ -1,6 +1,6 @@
 {lib, config, ...}:
 {
-  options.ly.ttyUsers.tty1 = lib.mkOption {type = lib.types.attrsOf lib.types.str; default = {};};
+  options.ly.ttyUsers = lib.mkOption {type = lib.types.attrsOf lib.types.str; default = {};};
   options.ly.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.ly.enable {
     #enable ly
