@@ -1,4 +1,32 @@
--- --- BINDS ---
+-- --- KEYBINDINGS ---
+local terminal = "kitty"
+local browser = "firefox"
+local appLauncher = "noctalia msg panel-toggle launcher"
+local fileManager = terminal .. " yazi"
+local processViewer = terminal .. " btop"
+local notificationCenter = "noctalia msg panel-toggle notifications"
+local lock = "noctalia msg session lock"
+local screenshot = "noctalia msg screenshot-region"
+local screenshotAnnotate = "noctalia msg screenshot-region --annotate"
+
+
+-- Launch Apps.
+hl.bind("SUPER + RETURN",    hl.dsp.exec_cmd(kitty))
+hl.bind("SUPER + SPACE",     hl.dsp.exec_cmd(appLauncher))
+hl.bind("SUPER + DELETE",    hl.dsp.exec_cmd(processViewer))
+hl.bind("SUPER + B",         hl.dsp.exec_cmd(browser))
+hl.bind("SUPER + E",         hl.dsp.exec_cmd(fileManager))
+hl.bind("SUPER + N",         hl.dsp.exec_cmd(notificationCenter))
+hl.bind("SUPER + L",         hl.dsp.exec_cmd(lock))
+hl.bind("SUPER + S",         hl.dsp.exec_cmd(screenshot))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshotAnnotate))
+
+-- Close the focused window.
+hl.bind("SUPER + Q", hl.dsp.window.close())
+hl.bind("SUPER + F", hl.dsp.window.fullscreen())
+
+
+-- --- BINDS CONFIG ---
 hl.config({
   binds = {
     allow_workspace_cycles = false, -- Allow cyclic navigation through workspace history. Default: false.
@@ -28,10 +56,3 @@ hl.config({
 
   },
 })
-
--- --- KEYBINDINGS ---
--- Launch Kitty.
-hl.bind("SUPER + RETURN", hl.dsp.exec_cmd("kitty"))
-
--- Close the focused window.
-hl.bind("SUPER + Q", hl.dsp.window.close())
