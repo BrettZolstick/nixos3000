@@ -1,12 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  osConfig,
-  ...
-}: {
+{config, lib, pkgs, osConfig, ...}: {
   config = lib.mkIf config.helix.enable {
     home.packages = with pkgs; [nixd alejandra];
+    
     programs.helix.languages = {
       "language-server" = {
         nixd = {
@@ -17,13 +12,14 @@
           };
         };
       };
-      language = [
-        {
-          name = "nix";
-          "language-servers" = ["nixd"];
-          formatter = {command = "alejandra";};
-        }
-      ];
+      
+      language = [{
+        name = "nix";
+        "language-servers" = ["nixd"];
+        formatter = {command = "alejandra";};
+      }];
     };
+
+    
   };
 }

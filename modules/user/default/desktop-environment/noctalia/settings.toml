@@ -38,6 +38,9 @@ widget_order = []
 
     [desktop_widgets.widget]
 
+[lockscreen]
+transition_duration = 800
+
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
@@ -197,6 +200,7 @@ wallpaper_scheme = "soft"
 
 [wallpaper]
 directory = "/etc/nixos/nixos3000/resources/wallpapers"
+transition_duration = 800
 
     [wallpaper.default]
     path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"

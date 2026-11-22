@@ -1,27 +1,16 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{config, lib, pkgs, ...}: {
   config = lib.mkIf config.helix.enable {
-    home.packages = with pkgs; [
-      vscode-langservers-extracted
-      prettier
-    ];
+    home.packages = with pkgs; [ vscode-langservers-extracted prettier ];
+
     programs.helix.languages = {
-      language = [
-        {
-         name = "html";
-          formatter = {
-            command = "prettier";
-            args = [
-              "--parser"
-              "html"
-            ];
-          };
-        }
-      ];
+      language = [{
+        name = "html";
+        formatter = {
+          command = "prettier";
+          args = [ "--parser" "html"];
+        };
+      }];
     };
+    
   };
 }
