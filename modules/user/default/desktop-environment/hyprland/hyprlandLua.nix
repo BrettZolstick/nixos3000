@@ -16,6 +16,7 @@
         require("hyprland.binds")
         require("hyprland.render")
         require("hyprland.cursor")
+        require("noctalia")
       '';
     };
     

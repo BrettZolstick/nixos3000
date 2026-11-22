@@ -183,7 +183,7 @@ pure_black_dark = true
 source = "wallpaper"
 
     [theme.templates]
-    builtin_ids = [ "kitty" ]
+    builtin_ids = [ "helix", "hyprland", "kitty" ]
 
 [wallpaper]
 directory = "/etc/nixos/nixos3000/resources/wallpapers"
