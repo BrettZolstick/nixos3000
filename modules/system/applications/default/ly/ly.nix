@@ -1,4 +1,4 @@
-{lib, config, ...}:
+{lib, config, pkgs, ...}:
 {
   options.ly.ttyUsers = lib.mkOption {type = lib.types.attrsOf lib.types.str; default = {};};
   options.ly.enable = lib.mkOption {default = true;};
@@ -6,6 +6,7 @@
     #enable ly
     services.displayManager.ly = {
       enable = true;
+      settings.type_username = true;
     };
 
     # Enable virtual terminals on tty1-10, with getty explicity on tty10
@@ -35,8 +36,13 @@
       restartIfChanged = false; # do not restart on rebuild switch
 
       serviceConfig = {
-        # launch ly
-        ExecStart = "/run/current-system/sw/bin/ly";
+        # create a copy of the ly config but change the save file to reference the current tty
+        ExecStartPre = "${pkgs.writeShellScript "ly-tty-config" (builtins.readFile ./ly-tty-config.sh)} $I";
+        
+        # launch ly using the new config
+        ExecStart = "/run/current-system/sw/bin/ly --config /run/ly/%I";
+        RuntimeDirecory = "ly/%I";
+        StateDirectory = "ly/%I";
 
         # wait for boot to settle so messages don't draw over ly
         Type = "idle";
