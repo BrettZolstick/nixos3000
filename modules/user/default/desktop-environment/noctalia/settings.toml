@@ -140,7 +140,7 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1",
         show_weather = true
 
 [plugins]
-enabled = [ "noctalia/wallhaven" ]
+enabled = [ "noctalia/wallhaven", "BrettZolstick/username-on-lockscreen" ]
 
     [[plugins.source]]
     kind = "git"
@@ -156,6 +156,12 @@ enabled = [ "noctalia/wallhaven" ]
     kind = "git"
     location = "https://github.com/maylton/noctalia-auto-tile-plugin"
     name = "maylton-plugins"
+
+    [[plugins.source]]
+    kind = "path"
+    location = "/etc/nixos/nixos3000/modules/default/desktop-environment/noctalia/custom-plugins/"
+    name = "custom-plugins"
+    enabled = true
 
 [shell]
 card_borders = false
