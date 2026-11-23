@@ -31,10 +31,10 @@ hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 
 
 -- Switch Users
-hl.bind("CTRL + SHIFT + SUPER + 1", hl.dsp.exec_cmd(switchUser1))
-hl.bind("CTRL + SHIFT + SUPER + 2", hl.dsp.exec_cmd(switchUser2))
-hl.bind("CTRL + SHIFT + SUPER + 3", hl.dsp.exec_cmd(switchUser3))
-hl.bind("CTRL + SHIFT + SUPER + 4", hl.dsp.exec_cmd(switchUser4))
+hl.bind("CTRL_R + SHIFT_R + 1", hl.dsp.exec_cmd(switchUser1), {locked = true})
+hl.bind("CTRL_R + SHIFT_R + 2", hl.dsp.exec_cmd(switchUser2), {locked = true})
+hl.bind("CTRL_R + SHIFT_R + 3", hl.dsp.exec_cmd(switchUser3), {locked = true})
+hl.bind("CTRL_R + SHIFT_R + 4", hl.dsp.exec_cmd(switchUser4), {locked = true})
 
 -- --- BINDS CONFIG ---
 hl.config({
