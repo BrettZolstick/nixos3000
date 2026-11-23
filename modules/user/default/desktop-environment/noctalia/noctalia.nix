@@ -20,23 +20,6 @@
     # modules settings.)
     programs.noctalia = {
     	enable = true;
-    	settings = {
-    	  lockscreen_widgets = {
-    	    enabled = true;
-    	    widget.username = {
-    	      type = "label";
-    	      placement_width = 100.0;
-    	      placement_height = 100.0;
-    	      cx = 50.0;
-    	      cy = 70.0;
-    	      box_width = 400.0;
-    	      box_height = 100.0;
-    	      rotation = 0.0;
-    	      settings.title = config.home.username;
-    	      settings.color = "primary";
-    	    };
-    	  };
-    	};
     };
   };
 }
