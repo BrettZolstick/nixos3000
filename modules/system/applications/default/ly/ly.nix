@@ -32,7 +32,11 @@ let
     #enable ly
     services.displayManager.ly = {
       enable = true;
-      settings.type_username = true;
+      x11Support = false;
+      settings = {
+        type_username = true;
+        shell = false;       
+      };
     };
 
     # Enable virtual terminals on tty1-10, with getty explicity on tty10
