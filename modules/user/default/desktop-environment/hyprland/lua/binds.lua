@@ -8,6 +8,10 @@ local notificationCenter = "noctalia msg panel-toggle notifications"
 local lock = "noctalia msg session lock"
 local screenshot = "noctalia msg screenshot-region"
 local screenshotAnnotate = "noctalia msg screenshot-region --annotate"
+local switchUser1 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 1" 
+local switchUser2 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 2" 
+local switchUser3 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 3" 
+local switchUser4 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 4" 
 
 
 -- Launch Apps.
@@ -25,6 +29,12 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshotAnnotate))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 
+
+-- Switch Users
+hl.bind("CTRL + SHIFT + SUPER + 1", hl.dsp.exec_cmd(switchUser1))
+hl.bind("CTRL + SHIFT + SUPER + 2", hl.dsp.exec_cmd(switchUser2))
+hl.bind("CTRL + SHIFT + SUPER + 3", hl.dsp.exec_cmd(switchUser3))
+hl.bind("CTRL + SHIFT + SUPER + 4", hl.dsp.exec_cmd(switchUser4))
 
 -- --- BINDS CONFIG ---
 hl.config({

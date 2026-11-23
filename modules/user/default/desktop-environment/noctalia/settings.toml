@@ -39,10 +39,11 @@ widget_order = []
     [desktop_widgets.widget]
 
 [lockscreen]
+transition = [ "crt" ]
 transition_duration = 800
 
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
 widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1", "lockscreen-login-box@FALLBACK" ]
 
@@ -110,8 +111,8 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1",
         show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 196.0
-    box_width = 810.0
+    box_height = 70.0
+    box_width = 400.0
     cx = 640.0
     cy = 568.33331298828125
     output = "eDP-1"
@@ -127,7 +128,7 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1",
         center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
-        layout = "regular"
+        layout = "compact"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
