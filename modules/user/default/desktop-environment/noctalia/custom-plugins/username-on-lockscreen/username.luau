@@ -1,8 +1,8 @@
-local user = noctalia.getenv(USER) or "unknown"
+local user = noctalia.getenv("USER") or "unknown"
 
 local function draw()
   desktopWidget.render(ui.label({
-    text = "testing",
+    text = user,
     fontSize = 20,
     color = "on_primary",
     shadow = true,
