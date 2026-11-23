@@ -40,13 +40,14 @@ let
       NAutoVTs = 9; # enable autovt (will be ly) virtual terminals on tty1-9
       ReserveVT = 0;
     };
-    systemd.targets.getty.wants = ["getty@tty10.service"]; # start getty on tty 10
 
+    systemd.targets.getty.wants = [
+      "ly@tty1.service"      # start ly on tty1 on boot
+      "getty@tty10.service"  # start getty on tty10 on boot
+    ]; 
 
-    # start ly on tty1 using my service explicitly, instead of letting it be mananged by
-    # NixOS's display-manager.service
-    system.targets.getty.wants = ["ly@tty1.service"]; 
-    systemd.services.display-manager.enable = lib.mkForce false;
+    # do not use NixOS display-manager servce, explicitly only start ly via my custom service
+     systemd.services.display-manager.enable = lib.mkForce false; 
     
     # let ly be the default on new ttys instead of getty
     systemd.services."ly@".aliases = ["autovt@.service"];
@@ -99,7 +100,7 @@ let
     };
 
     # Autofill the usernames for each specified tty
-    systemd.tmpfiles.rules = allTmpFilesRules config.ly.ttyUsers;
+    systemd.tmpfiles.rules = allTmpFilesRules;
     
   };
 }
