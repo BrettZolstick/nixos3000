@@ -45,7 +45,12 @@ transition_duration = 800
 [lockscreen_widgets]
 enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1", "lockscreen-login-box@FALLBACK" ]
+widget_order = [
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-login-box@WAYLAND-1",
+    "lockscreen-login-box@FALLBACK",
+    "lockscreen-widget-0000000000000001"
+]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -139,6 +144,17 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@WAYLAND-1",
         show_unlock_hint = true
         show_weather = true
 
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 192.0
+    box_width = 416.0
+    cx = 640.0
+    cy = 344.0
+    output = "eDP-1"
+    placement_height = 720.0
+    placement_width = 1280.0
+    rotation = 0.0
+    type = "BrettZolstick/username-on-lockscreen:username"
+
 [plugins]
 enabled = [ "noctalia/wallhaven", "BrettZolstick/username-on-lockscreen" ]
 
@@ -159,9 +175,8 @@ enabled = [ "noctalia/wallhaven", "BrettZolstick/username-on-lockscreen" ]
 
     [[plugins.source]]
     kind = "path"
-    location = "/etc/nixos/nixos3000/modules/default/desktop-environment/noctalia/custom-plugins/"
+    location = "/etc/nixos/nixos3000/modules/user/default/desktop-environment/noctalia/custom-plugins"
     name = "custom-plugins"
-    enabled = true
 
 [shell]
 card_borders = false
