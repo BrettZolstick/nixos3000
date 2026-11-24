@@ -186,6 +186,7 @@ card_borders = false
 font_family = "VictorMono NFM SemiBold"
 settings_window_translucent = true
 setup_wizard_enabled = false
+time_format = "{:%I:%M %p}"
 
     [shell.animation]
     speed = 1.7500000260770321
@@ -254,6 +255,9 @@ enabled = false
 
 [widget.clipboard]
 enabled = false
+
+[widget.clock]
+format = "{:%I:%M %p}"
 
 [widget.wallhaven]
 type = "noctalia/wallhaven:wallhaven"

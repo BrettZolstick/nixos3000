@@ -35,7 +35,8 @@ let
       x11Support = false;
       settings = {
         type_username = true;
-        shell = false;       
+        shell = false;
+        session.log = ".local/state/ly-session.log"; # move annoying file out of the home directory     
       };
     };
 
