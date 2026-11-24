@@ -36,7 +36,7 @@ let
       settings = {
         type_username = true;
         shell = false;
-        session.log = ".local/state/ly-session.log"; # move annoying file out of the home directory     
+        session_log = ".local/state/ly-session.log"; # move annoying file out of the home directory     
       };
     };
 
