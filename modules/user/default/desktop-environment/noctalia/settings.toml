@@ -213,12 +213,12 @@ setup_wizard_enabled = false
     direction = "down_right"
 
 [theme]
-builtin = "Dracula"
+builtin = "Ayu"
 community_palette = "Heartbox"
 mode = "dark"
 pure_black_dark = true
 source = "community"
-wallpaper_scheme = "soft"
+wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "hyprland", "kcolorscheme", "kitty" ]
@@ -229,16 +229,16 @@ directory = "/etc/nixos/nixos3000/resources/wallpapers"
 transition_duration = 800
 
     [wallpaper.default]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
 
     [wallpaper.last]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
 
     [[wallpaper.favorite]]
-    community_palette = "GitHub Dark"
+    community_palette = "Heartbox"
     palette_source = "community"
     path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
     theme_mode = "dark"

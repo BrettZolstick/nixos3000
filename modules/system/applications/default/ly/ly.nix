@@ -39,6 +39,9 @@ let
       };
     };
 
+    # export list of ttys and users so other applications (noctalia) can refererence it
+    environment.etc."ly/tty-users.json".text = builtins.toJSON config.ly.ttyUsers;
+
     # Enable virtual terminals on tty1-10, with getty explicity on tty10
     services.logind.settings.Login = {
       NAutoVTs = 9; # enable autovt (will be ly) virtual terminals on tty1-9
