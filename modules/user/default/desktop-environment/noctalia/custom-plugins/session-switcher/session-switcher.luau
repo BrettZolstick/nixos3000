@@ -1,44 +1,59 @@
-local MAP_PATH = "/etc/ly/tty-users.json"
-local TILE_HEIGHT = 128
-local me = noctalia.getenv("USER") or ""
-local users = {}
-local hovered = nil
-local errorText = nil
+-- I will be excessively commenting everything because I
+-- am new to lua, and if I don't write it down, I will forget
 
 local function loadUsers()
+
+  -- Define the table we will be creating.
+  -- we want a table sorted from first to last with the
+  -- following pairs: tty = <number>, name = <username>
   users = {}
   errorText = nil
 
-  -- import /etc/ly/tty-users.json
-  local raw, readError = noctalia.readFile(MAP_PATH)
-    if not raw then
-      errorText = "Couldn't read " .. MAP_PATH .. " (" .. tostring(readError) ..")"
+  -- set the path to the tty-users.json file
+  local ttyUsersJsonPath = "/etc/ly/tty-users.json"
+  
+  -- grab the file at "/etc/ly/tty-users.json"
+  local rawFile, readErr = noctalia.readFile(ttyUsersJsonPath)
+  if not rawFile then
+    errorText = "Cant read the json file: " .. ttyUsersJsonPath
+    debugText = errorText
     return
   end
 
-  -- decode the JSON into a lua table
-  local ok, map = pcall(noctalia.json.decode, raw)
-  if not ok or type(map) ~= "table" then
-    errorText = MAP_PATH .. " isn't valid JSON"
+  -- decode the raw json file into a lua table  
+  local jsonMap, jsonErr = noctalia.json.decode(rawFile)
+  if type(jsonMap) ~= "table" then
+    errorText = "Could not decode the json file at " .. ttyUsersJsonPath .. ": \n\n" .. tostring(rawFile)
+    debugText = errorText
     return
   end
 
-  -- parse into a properly formatted sorted list
-  for ttyName, userName in pairs(map) do
-    local number = tonumber(string.match(ttyName, "^tty(%d+)$"))
-    if number then
-      table.insert(users, { tty = number, name = userName})
-    end
+  -- extract the tty number and store it in the output table
+  for tty, userName in pairs(jsonMap) do
+    local ttyNumber = tonumber(string.match(tty, "^tty(%d+)$"))
+    table.insert(users, {tty = ttyNumber, name = userName})
   end
-  table.sort(users, function(a,b) return a.tty < b.tty end)
+
+  -- sort the users table from first to last tty
+  table.sort(users, function(a,b) return a.tty > b.tty end)
+  
+  debugJson = noctalia.json.encode(users, true)
+  debugText = tostring(debugJson)
+end
+
+
+local function debugrender()
+  
+  panel.render(
+    ui.column({padding = 12, gap = 6},{
+        ui.label({ text = debugText, fontSize = 14, color = "on_surface"}),
+      }
+    )
+  )
   
 end
 
--- draw a small number box in each tile's top right corner
-local function badge(number)
-  return ui.row({ justify = "end"},{
-    ui.row({ fill = surface, radius = 6, border = "outline_variant", borderWidth = 1, paddingH = 6, paddingV = 2 }, {
-      ui.label({ text = tostring(number), fontSize = 12, color = "on_surface_variant" }),
-    }),
-  })
+function onOpen(context)
+  loadUsers()
+  debugrender()
 end

@@ -159,7 +159,7 @@ widget_order = [
         background = false
 
 [plugins]
-enabled = [ "noctalia/wallhaven", "BrettZolstick/username-on-lockscreen" ]
+enabled = [ "noctalia/wallhaven", "BrettZolstick/username-on-lockscreen", "BrettZolstick/session-switcher" ]
 
     [[plugins.source]]
     kind = "git"
