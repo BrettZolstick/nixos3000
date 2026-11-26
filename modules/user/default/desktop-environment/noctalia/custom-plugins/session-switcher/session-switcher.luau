@@ -44,6 +44,33 @@ local function loadUsers()
   
 end
 
+function draw()
+  
+  panel.render(
+    ui.row({ gap = 10, padding = 0, flexGrow = 1}, {
+      ui.column({ padding = 10, radius = 10, fill = "surface_container_high/0.3", flexGrow = 1, justify = "space_between", align = "stretch", border = "outline", borderWidth = 1 }, {
+        ui.row({ justify = "end" },{
+          ui.column({ paddingH = 7, paddingV = 2, radius = 6, fill = "on_surface/0.8" }, {
+            ui.label({ text = "1", color = "surface", fontWeight = bold})
+          })
+        }),
+        ui.label({ text = "gaming", fontWeight = "Bold", fontSize = 20})  
+      }),
+      ui.column({ padding = 10, radius = 10, fill = "surface", flexGrow = 1, justify = "space_between", align = "start", border = "outline", borderWidth = 1 }, {
+        ui.label({ text = "personal", fontWeight = "Bold", fontSize = 20})  
+      }),
+      ui.column({ padding = 10, radius = 10, fill = "surface", flexGrow = 1, justify = "space_between", align = "start", border = "outline", borderWidth = 1 }, {
+        ui.label({ text = "cookiegroup", fontWeight = "Bold", fontSize = 20})  
+      }),
+      ui.column({ padding = 10, radius = 10, fill = "surface", flexGrow = 1, justify = "space_between", align = "start", border = "outline", borderWidth = 1 }, {
+        ui.label({ text = "plexus", fontWeight = "Bold", fontSize = 20})  
+      }),
+    })
+  )
+    
+end
+
 function onOpen(context)
   loadUsers()
+  draw()
 end
