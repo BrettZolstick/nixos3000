@@ -1,6 +1,6 @@
 { lib, config, ... }: {
-  options.hyprlandLua.enable = lib.mkOption {default = true;};
-  config = lib.mkIf config.hyprlandLua.enable {
+  options.hyprland.enable = lib.mkOption {default = true;};
+  config = lib.mkIf config.hyprland.enable {
 
     wayland.windowManager.hyprland = {
       enable = true;

@@ -8,10 +8,7 @@ local notificationCenter = "noctalia msg panel-toggle notifications"
 local lock = "noctalia msg session lock"
 local screenshot = "noctalia msg screenshot-region"
 local screenshotAnnotate = "noctalia msg screenshot-region --annotate"
-local switchUser1 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 1" 
-local switchUser2 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 2" 
-local switchUser3 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 3" 
-local switchUser4 = "noctalia msg session lock; sleep 0.75; busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 org.freedesktop.login1.Seat SwitchTo u 4" 
+local switchUsers = "noctalia msg panel-toggle BrettZolstick/session-switcher:session-switcher"
 
 
 -- Launch Apps.
@@ -24,6 +21,8 @@ hl.bind("SUPER + N",         hl.dsp.exec_cmd(notificationCenter))
 hl.bind("SUPER + L",         hl.dsp.exec_cmd(lock))
 hl.bind("SUPER + S",         hl.dsp.exec_cmd(screenshot))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshotAnnotate))
+hl.bind("SUPER + TAB",       hl.dsp.exec_cmd(switchUsers))
+
 
 -- Close the focused window.
 hl.bind("SUPER + Q", hl.dsp.window.close())
@@ -61,12 +60,6 @@ hl.bind("SUPER + SHIFT + 0", hl.dsp.window.move({workspace = "10"}))
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), {mouse = true})
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), {mouse = true})
-
--- Switch Users
-hl.bind("CTRL_R + SHIFT_R + 1", hl.dsp.exec_cmd(switchUser1), {locked = true})
-hl.bind("CTRL_R + SHIFT_R + 2", hl.dsp.exec_cmd(switchUser2), {locked = true})
-hl.bind("CTRL_R + SHIFT_R + 3", hl.dsp.exec_cmd(switchUser3), {locked = true})
-hl.bind("CTRL_R + SHIFT_R + 4", hl.dsp.exec_cmd(switchUser4), {locked = true})
 
 -- --- BINDS CONFIG ---
 hl.config({
