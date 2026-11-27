@@ -42,7 +42,7 @@ end
 
 local function switchTo(tty)
   panel.close()
-  noctalia.runAsync("switch-session " .. tostring(tty))
+  noctalia.runAsync("sleep 0.15; switch-session " .. tostring(tty))
 end
 
 local function drawTtyBadge(number)

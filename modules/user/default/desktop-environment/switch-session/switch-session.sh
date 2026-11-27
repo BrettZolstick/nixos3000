@@ -9,6 +9,6 @@ fi
 
 # lock the current noctalia session, then switch
 noctalia msg session lock
-sleep 0.85 
+sleep 1 
 busctl --system call org.freedesktop.login1 /org/freedesktop/login1/seat/seat0 \
   org.freedesktop.login1.Seat SwitchTo u "$target"
