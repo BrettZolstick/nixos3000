@@ -34,9 +34,8 @@ in
         stateVersion = "26.05";
       };
 
+      # enable user level modules here:
       firefox.enable = true;
-
-
 
     };
   };
