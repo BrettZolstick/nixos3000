@@ -2,6 +2,11 @@
   options.noctalia.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.noctalia.enable {
 
+    assertions = [
+      {assertion = config.switch-session.enable; message = "This module needs noctalia enabled. Please set noctalia.enable = true for this user";}
+    ];
+
+
     # Symlink noctalia settings.toml to the repo so that settings
     # can easily be edited via the gui, but then committed
     # to the repo so that new hosts will use the same settings.

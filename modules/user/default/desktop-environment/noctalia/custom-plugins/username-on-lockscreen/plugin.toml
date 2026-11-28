@@ -1,0 +1,10 @@
+id          = "BrettZolstick/username-on-lockscreen"
+name        = "Username on Lockscreen"
+version     = "0.1.0"
+plugin_api  = 3
+author      = "BrettZolstick"
+description = "Lock screen widget to show the currently logged in user"
+
+[[desktop_widget]]
+id    = "username"
+entry = "username.luau"

@@ -8,6 +8,7 @@ local notificationCenter = "noctalia msg panel-toggle notifications"
 local lock = "noctalia msg session lock"
 local screenshot = "noctalia msg screenshot-region"
 local screenshotAnnotate = "noctalia msg screenshot-region --annotate"
+local switchUsers = "noctalia msg panel-toggle BrettZolstick/session-switcher:session-switcher"
 
 
 -- Launch Apps.
@@ -20,11 +21,45 @@ hl.bind("SUPER + N",         hl.dsp.exec_cmd(notificationCenter))
 hl.bind("SUPER + L",         hl.dsp.exec_cmd(lock))
 hl.bind("SUPER + S",         hl.dsp.exec_cmd(screenshot))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshotAnnotate))
+hl.bind("SUPER + TAB",       hl.dsp.exec_cmd(switchUsers))
+
 
 -- Close the focused window.
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 
+-- Move focus with arrow keys
+hl.bind("SUPER + LEFT",  hl.dsp.focus({direction = "left"}))
+hl.bind("SUPER + RIGHT", hl.dsp.focus({direction = "right"}))
+hl.bind("SUPER + UP",    hl.dsp.focus({direction = "up"}))
+hl.bind("SUPER + DOWN",  hl.dsp.focus({direction = "down"}))
+
+-- Switch active workspace (temporary unti I get my custom workspace towers set up)
+hl.bind("SUPER + 1", hl.dsp.focus({workspace = "1"}))
+hl.bind("SUPER + 2", hl.dsp.focus({workspace = "2"}))
+hl.bind("SUPER + 3", hl.dsp.focus({workspace = "3"}))
+hl.bind("SUPER + 4", hl.dsp.focus({workspace = "4"}))
+hl.bind("SUPER + 5", hl.dsp.focus({workspace = "5"}))
+hl.bind("SUPER + 6", hl.dsp.focus({workspace = "6"}))
+hl.bind("SUPER + 7", hl.dsp.focus({workspace = "7"}))
+hl.bind("SUPER + 8", hl.dsp.focus({workspace = "8"}))
+hl.bind("SUPER + 9", hl.dsp.focus({workspace = "9"}))
+hl.bind("SUPER + 0", hl.dsp.focus({workspace = "10"}))
+
+-- move active window to workspace (temporary until I get my custom workspace towers set up)
+hl.bind("SUPER + SHIFT + 1", hl.dsp.window.move({workspace = "1"}))
+hl.bind("SUPER + SHIFT + 2", hl.dsp.window.move({workspace = "2"}))
+hl.bind("SUPER + SHIFT + 3", hl.dsp.window.move({workspace = "3"}))
+hl.bind("SUPER + SHIFT + 4", hl.dsp.window.move({workspace = "4"}))
+hl.bind("SUPER + SHIFT + 5", hl.dsp.window.move({workspace = "5"}))
+hl.bind("SUPER + SHIFT + 6", hl.dsp.window.move({workspace = "6"}))
+hl.bind("SUPER + SHIFT + 7", hl.dsp.window.move({workspace = "7"}))
+hl.bind("SUPER + SHIFT + 8", hl.dsp.window.move({workspace = "8"}))
+hl.bind("SUPER + SHIFT + 9", hl.dsp.window.move({workspace = "9"}))
+hl.bind("SUPER + SHIFT + 0", hl.dsp.window.move({workspace = "10"}))
+
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), {mouse = true})
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), {mouse = true})
 
 -- --- BINDS CONFIG ---
 hl.config({

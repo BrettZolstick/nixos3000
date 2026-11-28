@@ -17,14 +17,16 @@ sops.secrets.root-password = {
 };
 
 imports = [
-  ../users/test.nix
   ../users/personal.nix
   ../users/gaming.nix
   ../users/cookiegroup.nix
   ../users/plexus.nix
 ] ++ nixFilesToImport; # This recursively imports any nix files under ./system as well as the specified imports
 
-# kde.enable = true; 
-# sddm.enable = true;
+  ly.ttyUsers.tty1 = "gaming";
+  ly.ttyUsers.tty2 = "personal";
+  ly.ttyUsers.tty3 = "cookiegroup";
+  ly.ttyUsers.tty4 = "plexus";
+  
   
 }

@@ -1,0 +1,17 @@
+id = "BrettZolstick/session-switcher"
+name = "Session Switcher"
+version = "0.1.0"
+plugin_api = 24
+author = "BrettZolstick"
+icon = "users"
+description = "Panel that lets you switch to another tty"
+
+[[panel]]
+id = "session-switcher"
+entry = "session-switcher.luau"
+width = 840
+height = 160
+placement = "attached"
+position = "top_center"
+keyboard_focus = "exclusive"
+capture_keys = ["1","2","3","4","5","6","7","8","9","Left","Right","Return"]

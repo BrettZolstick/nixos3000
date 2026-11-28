@@ -11,7 +11,7 @@ hl.config({
     extend_border_grab_area = 15, -- Extra pointer grab area for dragging borders. Default: 15.
     float_gaps = 0, -- Padding around floating windows; -1 means automatic. Default: 0.
     gaps_in = 5, -- Space between adjacent tiled windows. Default: 5.
-    gaps_out = 20, -- Space between windows and monitor edges. Default: 20.
+    gaps_out = 5, -- Space between windows and monitor edges. Default: 20.
     gaps_workspaces = 0, -- Additional spacing between workspace views. Default: 0.
     hover_icon_on_border = true, -- Show resize cursor when hovering a resizable border. Default: true.
     modal_parent_blocking = true, -- Block interaction with a parent window while its modal dialog is open. Default: true.
