@@ -2,6 +2,11 @@
   options.hyprland.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.hyprland.enable {
 
+    assertions = [
+      {assertion = config.noctalia.enable; message = "This module needs noctalia enabled. Please set noctalia.enable = true for this user";}
+    ];
+
+
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -36,3 +41,5 @@
     
   };
 }
+
+

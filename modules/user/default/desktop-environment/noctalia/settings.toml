@@ -159,7 +159,7 @@ widget_order = [
         background = false
 
 [plugins]
-enabled = [ "noctalia/wallhaven", "BrettZolstick/username-on-lockscreen", "BrettZolstick/session-switcher" ]
+enabled = [ "BrettZolstick/username-on-lockscreen", "BrettZolstick/session-switcher" ]
 
     [[plugins.source]]
     kind = "git"
@@ -214,12 +214,12 @@ time_format = "{:%I:%M %p}"
     direction = "down_right"
 
 [theme]
-builtin = "Ayu"
+builtin = "Gruvbox"
 community_palette = "Heartbox"
 mode = "dark"
 pure_black_dark = true
 source = "community"
-wallpaper_scheme = "m3-content"
+wallpaper_scheme = "m3-monochrome"
 
     [theme.templates]
     builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "hyprland", "kcolorscheme", "kitty" ]
@@ -242,6 +242,24 @@ transition_duration = 800
     community_palette = "Heartbox"
     palette_source = "community"
     path = "/etc/nixos/nixos3000/resources/wallpapers/Soyuz_rocket.jpg"
+    theme_mode = "dark"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/F1_Engine.jpg"
+    theme_mode = "light"
+    wallpaper_scheme = "m3-monochrome"
+
+    [[wallpaper.favorite]]
+    builtin_palette = "Gruvbox"
+    palette_source = "builtin"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Roscosmos.jpg"
+    theme_mode = "dark"
+
+    [[wallpaper.favorite]]
+    community_palette = "Gruvbox Material Medium"
+    palette_source = "community"
+    path = "/etc/nixos/nixos3000/resources/wallpapers/Apollo_12_leaving_VAB.jpg"
     theme_mode = "dark"
 
 [weather]

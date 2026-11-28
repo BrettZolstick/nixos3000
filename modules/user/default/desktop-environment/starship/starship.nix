@@ -2,6 +2,10 @@
   options.starship.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.starship.enable {
 
+    assertions = [
+      {assertion = config.noctalia.enable; message = "This module needs noctalia enabled. Please set noctalia.enable = true for this user";}
+    ];
+
     programs.starship = {
       enable = true;
       enableFishIntegration = true;

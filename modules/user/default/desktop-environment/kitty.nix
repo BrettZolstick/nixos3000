@@ -2,6 +2,10 @@
   options.kitty.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.kitty.enable {
 
+    assertions = [
+      {assertion = config.noctalia.enable; message = "This module needs noctalia enabled. Please set noctalia.enable = true for this user";}
+    ];
+
     programs.kitty = {
       enable = true;
       enableGitIntegration = true;

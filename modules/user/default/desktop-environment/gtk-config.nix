@@ -3,11 +3,10 @@
   config = lib.mkIf config.gtk-config.enable {
 
     assertions = [
-      {
-        assertion = osConfig.programs.dconf.enable;
-        message = "gtk3 theming requires dconf to be enabled at the system level. Set programs.dconf.enable = true;";
-      }  
+      {assertion = osConfig.programs.dconf.enable; message = "gtk3 theming requires dconf to be enabled at the system level. Set programs.dconf.enable = true;";}
+      {assertion = config.noctalia.enable; message = "This module needs noctalia enabled. Please set noctalia.enable = true for this user";}
     ];
+
 
     gtk = {
       enable = true;
