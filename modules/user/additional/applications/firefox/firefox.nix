@@ -3,10 +3,39 @@
   config = lib.mkIf config.firefox.enable {
 
     programs.firefox.enable = true;
+
     programs.firefox.policies = {
       OverrideFirstRunPage = "";
       SkipTermsOfUse = true;
     };
+
+    programs.firefox.policies.ExtensionSettings = {
+      # adnausem 
+      "adnauseam@rednoise.org" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/adnauseam/latest.xpi";
+        installation_mode = "force_installed";
+      };
+
+      # ClearURLs
+      "{74145f27-f039-47ce-a470-a662b129930a}" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
+        installation_mode = "force_installed";
+      };
+
+      # Youtube Shorts Block
+      "{34daeb50-c2d2-4f14-886a-7160b24d66a4}" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/youtube-shorts-block/latest.xpi";
+        installation_mode = "force_installed";
+      };
+
+      # Return Youtube Dislike
+      "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      
+    };
+    
     programs.firefox.profiles.default = {
       id = 0;
       isDefault = true;
