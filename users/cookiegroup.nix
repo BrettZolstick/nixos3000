@@ -35,7 +35,7 @@ in
       };
 
       # enable user level modules here:
-      firefox.enable = true;
+      firefox.cookiegroup.enable = true;
 
     };
   };
