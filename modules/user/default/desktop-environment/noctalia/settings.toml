@@ -159,7 +159,7 @@ widget_order = [
         background = false
 
 [plugins]
-enabled = [ "BrettZolstick/username-on-lockscreen", "BrettZolstick/session-switcher" ]
+enabled = [ "BrettZolstick/username-on-lockscreen", "BrettZolstick/session-switcher", "knyrps/nix-search" ]
 
     [[plugins.source]]
     kind = "git"

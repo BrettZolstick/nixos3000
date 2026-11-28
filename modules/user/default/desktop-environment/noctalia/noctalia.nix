@@ -1,4 +1,4 @@
-{config, lib, ...}: {
+{config, lib, pkgs, ...}: {
   options.noctalia.enable = lib.mkOption {default = true;};
   config = lib.mkIf config.noctalia.enable {
 
@@ -26,5 +26,11 @@
     programs.noctalia = {
     	enable = true;
     };
+
+    home.packages = with pkgs; [
+      # nix search plugin requirements
+      nix-search-tv
+      fzf
+    ];
   };
 }

@@ -1,0 +1,45 @@
+{
+  "placements": {
+    "widget-overflow-fixed-list": [],
+    "unified-extensions-area": [],
+    "nav-bar": [
+      "back-button",
+      "forward-button",
+      "stop-reload-button",
+      "vertical-spacer",
+      "urlbar-container",
+      "downloads-button",
+      "reset-pbm-toolbar-button",
+      "unified-extensions-button"
+    ],
+    "toolbar-menubar": [
+      "menubar-items"
+    ],
+    "TabsToolbar": [
+      "tabbrowser-tabs",
+      "new-tab-button",
+      "smartwindow-group-tabs-button",
+      "ai-window-toggle"
+    ],
+    "vertical-tabs": [],
+    "PersonalToolbar": [
+      "personal-bookmarks"
+    ]
+  },
+  "seen": [
+    "reset-pbm-toolbar-button",
+    "smartwindow-group-tabs-button",
+    "ai-window-toggle",
+    "developer-button",
+    "screenshot-button"
+  ],
+  "dirtyAreaCache": [
+    "nav-bar",
+    "TabsToolbar",
+    "vertical-tabs",
+    "PersonalToolbar",
+    "toolbar-menubar"
+  ],
+  "currentVersion": 28,
+  "newElementCount": 6
+}

@@ -19,6 +19,8 @@
         "browser.aboutwelcome.enabled" = false;
         "datareporting.policy.firstRunURL" = "";
         "browser.bookmarks.addedImportButton" = true; # tells firefox not to add the import bookmarks button
+        "browser.uiCustomization.state" = builtins.readFile ./uiCustomization.json;
+        "browser.tabs.inTitlebar" = 0;
       };
     };
     
